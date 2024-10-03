@@ -207,7 +207,31 @@ em que $\mu_{k} = \sum_{i=1}^{n} (x_{i}- \Bar{x})^{k}$, $J_{n} = \sqrt{\frac{\pi
 
 \subsection{Zhang(2002)}
 
-Em relação aos testes novos proposto por Zhang(2002) no qual modifica os parâmetros dos testes de Anderson-Darling, Cramér-Von Mises e kolmogorov-Smirnov e cria três testes adaptados para aderência a normalidade utilizou-se as funções: \texttt{za.test()}, \texttt{zc.test()} e \texttt{zk.test()} do pacote \textit{DistributionTest} do programa R.
+Em 2002, Zhang apresentou 3 novos testes de normalidade, baseados na função de distribuição empírica, no qual modifica os parâmetros dos testes tradicionais de Anderson-Darling, Cramér-Von Mises e kolmogorov-Smirnov e cria três testes($Z_{A}, Z_{C}$ e $Z_{K}$) adaptados para aderência a normalidade.\vskip0.3cm
+
+Nesse contexto, são fornecidos novos tipos de testes para normalidade, abrangentes que geralmente são muito mais poderosos que os testes tradicionais. \vskip0.3cm
+
+Assim, a nova estatística chamada $Z_{A}$ semelhantes à estatística do teste de Anderson-Darling, é definida como:
+
+\begin{equation}
+    Z_{A} = - \sum_{i=1}^{n} \left[  \frac{ln [F_{0}(X_{(i)})]}{(n-i)+0.5} + \frac{1-F_{0}(X_{(i)})}{i-0.5}  \right]  
+\end{equation}
+
+A próxima estatistica de teste $Z_{C}$, semelhantes à estatística do teste de Cramer-Von Mises, é apresentada como:
+
+\begin{equation}
+    Z_{C} = \sum_{i=1}^{n}  \left[ln  \frac{F_{0}(X_{(I)})^{-1}-1}{(n-0.5)/(i-0.75)-1} \right]
+\end{equation}
+
+A terceira estatística de teste definida como $Z_{K}$, similar à estatística do teste de Kolmogorov-Smirnov, é definida como:
+
+\begin{equation}
+Z_{K} = max \left[(i-0.5)ln \left[ \frac{i-0.5}{n F_{0}(X_{(i)})} \right]  + (n-i+0.5) ln \frac{(n-i)+0.5}{n[1-F_{0}(X_{(i)})]} \right]
+\end{equation}
+
+Em 2020, Cui e Zhou, criaram o pacote na linguagem de programação R chamado \textit{DistributionTest}, possibilitando o cálculo dos teste propostos por Zhang(2002). Com isso,  utilizou-se as funções: \texttt{za.test()}, \texttt{zc.test()} e \texttt{zk.test()} para aplicação das referidas estatísticas de teste. \vskip0.3cm
+
+%Zhang, J.; Wu, Y. Testes de razão de verossimilhança para normalidade. Comput. Stat. Dados Anal. 2005 , 49 , 709–721
 
 
 
@@ -256,8 +280,8 @@ Seus valores ficarm dentro do IC para proporções (\textit{p}) construídos a 9
 
 Segundo Thode Junior (2002), em resultados de simulação observou-se que, os testes de kolmogorov-smirnov e Qui-quadrado possuem poder tão baixo que deveriam ser desconsiderados como testes de normalidade.\vskip0.3cm
 
-Foi desenvolvido um script na linguagem de programação R, para auxiliar nos cálculos da simulação de Monte Carlo armazenado no repositório \textit{Github} que pode ser acessado no seguinte link: \href{https://github.com/MarioDhiego/Teste\_Normalidade}{https://github.com/MarioDhiego/Teste\_Normalidade}
-\vskip0.3cm
+%Foi desenvolvido um script na linguagem de programação R, para auxiliar nos cálculos da simulação de Monte Carlo armazenado no repositório \textit{Github} que pode ser acessado no seguinte link: \href{https://github.com/MarioDhiego/Teste\_Normalidade}{https://github.com/MarioDhiego/Teste\_Normalidade}
+$\vskip0.3cm
 
 
 De acordo com a tabela X, os resultados do teste de kappa para diferentes distribuições descritas anteriormente, percebe-se que, para a maioria das distribuições, os testes tiveram forte concordância entre rejeitar ou não a hipótese de normalidade. 
