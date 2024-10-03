@@ -141,7 +141,8 @@ sendo $m=(m_{1},m_{2},...,m_{n})^{T}$ o vetor de valores esperados das estatíst
 
 \subsection{D’Agostino-Pearson}
 
-O teste de D'Agostino-Pearson utiliza as estatísticas de assimetria (Skewness) e curtose (Kurtosis) para verificar a normalidade. A fórmula envolve calcular ambas as medidas e combiná-las em uma estatística conjunta.\vskip0.3cm
+O teste de D'Agostino-Pearson utiliza as estatísticas de assimetria (Skewness) e curtose (Kurtosis) para verificar a normalidade. A fórmula envolve calcular ambas as medidas e combiná-las em uma estatística conjunta (D'AGOSTINO \& PEARSON, 1973).\vskip0.3cm
+
 
 
 Com isso, a primeira parte da fórmula a seguir mede o grau de $\textbf{assimetria}$ dos dados (\textit{skewness}):
@@ -235,10 +236,14 @@ Neste estudo, a eficácia dos testes de normalidade foi avaliada por meio da sim
 
 
 \subsection{Erro Tipo I}
-Foram simuladas 1000 amostras aleatórias da distribuição Normal com média 0 e desvio-padrão 1, $Normal(0, 1)$, utilizando a função \texttt{rnorm()} do pacote base do R. Após a aplicação dos testes de normalidade, se a hipótese de normalidade foi rejeitada a um nível nominal de significância de 0.05, os dados foram erroneamente considerados como não normais, resultando em taxas de erro tipo I. A proporção de rejeições incorretas foi calculada para cada teste, permitindo a identificação de testes conservadores ou liberais com base na comparação com o nível de significância $\alpha$.
+Foram simuladas 1000 amostras aleatórias da distribuição Normal com média 0 e desvio-padrão 1, $Normal(0, 1)$, utilizando a função \texttt{rnorm()} do pacote base do R. Após a aplicação dos testes de normalidade, se a hipótese de normalidade foi rejeitada a um nível nominal de significância de 0.05, os dados foram erroneamente considerados como não normais, resultando em taxas de erro tipo I. \vskip0.3cm
+
+A proporção de rejeições incorretas foi calculada para cada teste, permitindo a identificação de testes conservadores ou liberais com base na comparação com o nível de significância $\alpha$.
 
 \subsection{Teste de Kappa de Concordância}
-Foi conduzida uma análise estatística em que os dados foram agrupados em diferentes distribuições com tamanhos de amostra variados. Utilizou-se o teste Kappa-Fleiss (descrito por CONGER, 1980) através da função \texttt{Kappam.fleiss()} do pacote \textit{irr}, com o objetivo de avaliar o nível de concordância entre os testes de normalidade empregados na decisão de aceitar ou rejeitar a hipótese nula de normalidade. Esta avaliação de concordância foi realizada exclusivamente para amostras que não apresentaram distribuição normal. O foco da análise foi verificar se o poder dos testes influencia diretamente na concordância entre eles.
+Foi conduzida uma análise estatística em que os dados foram agrupados em diferentes distribuições com tamanhos de amostra variados. Utilizou-se o teste Kappa-Fleiss (descrito por CONGER, 1980) através da função \texttt{Kappam.fleiss()} do pacote \textit{irr}, com o objetivo de avaliar o nível de concordância entre os testes de normalidade empregados na decisão de aceitar ou rejeitar a hipótese nula de normalidade. \vskip0.3cm
+
+Esta avaliação de concordância foi realizada exclusivamente para amostras que não apresentaram distribuição normal. O foco da análise foi verificar se o poder dos testes influencia diretamente na concordância entre eles.
 
 %%%%%%%%%% 2. Resultados e Discussão %%%%%%%%%%
 \section{Resultados e Discussão}
@@ -507,12 +512,15 @@ Para dados de distribuição normal, os testes avaliados foram exatos, controlan
 \noindent ANDERSON, T. W.; DARLING, D. A. Asymptotic theory of certain goodness of fit criteria based on stochastic processes. {\it The Annals of Mathematical Statistics}, JSTOR, p. 193–212, 1952.\newline
     
 \noindent DARLING, D. A. The Kolmogorov-Smirnov, Cramer-von Mises tests. {\it The Annals of Mathematical Statistics}, JSTOR, v. 28, n. 4, p. 823–838, 1957.\newline
+
+\noindent D'Agostino, Ralph B.; Pearson, E. S. (1973). "Tests for Departure from Normality. Empirical Results for the Distributions of b2 and b1. Biometrika. 60(3): 613–622
+\newline
     
 \noindent DUFOUR, J. - M. et al. Simulation-based finite sample normality tests in linear regressions. {\it The Econometrics Journal}, Wiley Online Library, v. 1, n. 1, p. 154–173, 1998.\newline
     
 \noindent JARQUE, C. M.; BERA, A. K. Efficient tests for normality, homoscedasticity and serial independence of regression residuals. {\it Economics Letters}, Elsevier, v. 6, n. 3, p. 255–259, 1980.\newline
 
-\noindent Jin Zhang, 2002. "Powerful goodness‐of‐fit tests based on the likelihood ratio," Journal of the Royal Statistical Society Series B, Royal Statistical Society, vol. 64(2), pages 281-294, May.\newline
+\noindent JIN ZHANG, 2002. "Powerful goodness‐of‐fit tests based on the likelihood ratio," Journal of the Royal Statistical Society Series B, Royal Statistical Society, vol. 64(2), pages 281-294, May.\newline
 
 \noindent LILLIEFORS, H. W. On the Kolmogorov-Smirnov test for normality with mean and variance unknown. {\it Journal of the American Statistical Association}, Taylor \& Francis, v. 62, n. 318, p. 399–402, 1967.\newline
     
