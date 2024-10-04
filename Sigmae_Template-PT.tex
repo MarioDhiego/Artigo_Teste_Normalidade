@@ -40,7 +40,7 @@
 \begin{small}
 
 \noindent{\bf Resumo:} {\it 
-    O objetivo deste trabalho foi avaliar as taxas de erro tipo I e poder dos testes de normalidade kolmogorov-Smirnov (KS), Shapiro-Wilk (SK), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Crámer-Von-Mises (CVM) implementados na linguagem de programação $R_{4.4.1}$ for windows para decidir quais apresentam o melhor desempenho. A metodologia utilizada foi um estudo de Simulação de Monte Carlo, que utilizou as distribuições (Normal, Couchy, beta, gama e exponencial) e cinco tamanhos de amostras foram simuladas 1.000 amostras de cada par distribuição-tamanho e realizado os testes. Sob normalidade, os testes foram exatos e, em relação ao poder, o desempenho foi afetado pelo tamanho da amostra e tipo de distribuição. Para amostras grandes, maiores que 500, o teste \textit{Zhang(2002)} apresentou o melhor desempenho e no caso de amostras pequenas, de uma maneira geral, o teste Shapiro-Wilk obteve os melhores resultados. Aplicou-se o teste Kappa-Fleis para avaliar a concordância na tomada de decisão. Para a maioria das distribuições, os testes tiveram forte concordância; Os testes de KS e AD se mostraram muito pouco poderoso, mesmo para grandes amostras.}\vspace{0.3cm}
+    O objetivo deste trabalho foi avaliar as taxas de erro tipo I e poder dos testes de normalidade kolmogorov-Smirnov (KS), Shapiro-Wilk (SK), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Crámer-Von-Mises (CVM) implementados na linguagem de programação $R_{4.4.1}$ for windows para decidir quais apresentam o melhor desempenho. A metodologia utilizada foi um estudo de Simulação de Monte Carlo, que utilizou as distribuições (Normal, beta e gama) e cinco tamanhos de amostras foram simuladas 1.000 amostras de cada par distribuição-tamanho e realizado os testes. Sob normalidade, os testes foram exatos e, em relação ao poder, o desempenho foi afetado pelo tamanho da amostra e tipo de distribuição. Para amostras grandes, maiores que 500, o teste \textit{Zhang(2002)} apresentou o melhor desempenho e no caso de amostras pequenas, de uma maneira geral, o teste Shapiro-Wilk obteve os melhores resultados. Aplicou-se o teste Kappa-Fleis para avaliar a concordância na tomada de decisão. Para a maioria das distribuições, os testes tiveram forte concordância; Os testes de KS e AD se mostraram muito pouco poderoso, mesmo para grandes amostras.}\vspace{0.3cm}
 
 \noindent{\bf Palavras-chave:} {\it Normalidade; Monte Carlo; Erro Tipo I; Shapiro-Wilk; kolmogorov-Smirnov.}\vspace{0.3cm}
 
@@ -53,7 +53,7 @@
 \begin{small}
 
 \noindent{\bf Abstract:} {\it 
-    The aim of this study was to evaluate the Type I error rates and power of the normality tests Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D'Agostino-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), and Crámer-Von-Mises (CVM) implemented in the R programming language to determine which ones perform best. The methodology used was a Monte Carlo Simulation study, which employed the following distributions: Normal, Cauchy, Beta, Gamma, and Exponential. For five sample sizes, 1,000 samples were simulated for each distribution-size pair, and the tests were performed. Under normality, the tests were accurate, and regarding power, performance was influenced by sample size and distribution type. For large samples, greater than 500, the \textit{Zhang(2002)} test showed the best performance, while for small samples, the Shapiro-Wilk test generally produced the best results. The Fleiss' Kappa test was applied to assess agreement in decision-making. For most distributions, the tests demonstrated strong agreement; however, the KS and AD tests proved to be very low in power, even for large samples.}\vspace{0.3cm}
+    The aim of this study was to evaluate the Type I error rates and power of the normality tests Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D'Agostino-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), and Crámer-Von-Mises (CVM) implemented in the R programming language to determine which ones perform best. The methodology used was a Monte Carlo Simulation study, which employed the following distributions: Normal, Beta and Gamma. For five sample sizes, 1,000 samples were simulated for each distribution-size pair, and the tests were performed. Under normality, the tests were accurate, and regarding power, performance was influenced by sample size and distribution type. For large samples, greater than 500, the \textit{Zhang(2002)} test showed the best performance, while for small samples, the Shapiro-Wilk test generally produced the best results. The Fleiss' Kappa test was applied to assess agreement in decision-making. For most distributions, the tests demonstrated strong agreement; however, the KS and AD tests proved to be very low in power, even for large samples.}\vspace{0.3cm}
 
 \noindent{\bf Keywords:}  {\it Normality; Monte Carlo; Type I Error; Shapiro-Wilk; Kolmogorov-Smirnov).\vspace{0.3cm}}
 
@@ -86,7 +86,7 @@ Nesse contexto, o objetivo do trabalho foi avaliar as taxas de erro tipo I e pod
 \section{Referencial Teórico}
 \subsection{A Distribuição Normal}
 
-Para o estudo de simulação é necessário definir uma das mais importantes  variáveis aleatórias contínuas, chamada distribuição normal.\vskip0.3cm
+Para o estudo de simulação é necessário definir uma das mais importantes  variáveis aleatórias contínuas, chamada distribuição normal, sendo que a maioria dos fenômenos aleatórios pode ser descrita de forma aproximada por ele.\vskip0.3cm
 
 Seja $X$ uma variável aleatória que assume todos os valores reais $- \infty < x < +\infty$, tem distribuição normal (ou gaussiana) com média $\mu$ e  variância $\sigma$, se sua função densidade de probabilidade (fdp) é dada por (MEYER, 1987):
 
@@ -336,9 +336,7 @@ Distribuição de Probabilidade  &  Teste de kappa-Fleiss\\
 \hline
       Normal(0,1)              &  \\
       Beta(2,5)                &  \\
-      Gamma(10,1/3)            &  \\
       Cauchy(0,1)              &  \\
-      Exponnencial()           &  \\
 \hline \hline
     \end{tabular}
     \caption{Teste kappa-Fleiss de Concordância para os testes de normalidade.}
@@ -568,111 +566,111 @@ Distribuição de Probabilidade  &  Teste de kappa-Fleiss\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%% Erro Tipo I -> Distribuição Gamma %%%%%%%%%%
+%%%%%%%%%% Erro Tipo I -> Distribuição Cauchy %%%%%%%%%%
 \begin{figure}[H]
     \centering
-    \caption{Comparação do Erro Tipo I dos testes AD, CM, DG, LL, JB, KS, LL, ZA, ZC e ZK em função do tamanho amostral para a \textbf{Distribuição} $\textbf{Gamma}(10, 1/3)$.}
-    \label{fig:erro_tipo_I_dist_gamma}
+    \caption{Comparação do Erro Tipo I dos testes AD, CM, DG, LL, JB, KS, LL, ZA, ZC e ZK em função do tamanho amostral para a \textbf{Distribuição} $\textbf{Cauchy}(0, 1)$.}
+    \label{fig:erro_tipo_I_dist_cauchy}
     
     % Primeira linha
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_30.pdf}
+    \includegraphics[width=\textwidth]{Distribuição Cauchy/Erro Tipo I/erro_tipo_I_cauchy_30.pdf}
         \caption{Tamanho amostral \(n = 30\)}
-        \label{fig:gamma_30}
+        \label{fig:cauchy_30}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_50.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Cauchy/Erro Tipo I/erro_tipo_I_cauchy_50.pdf}
         \caption{Tamanho amostral \(n = 50\)}
-        \label{fig:gamma_50}
+        \label{fig:cauchy_50}
     \end{subfigure}
     
     % Segunda linha
     \vspace{0.5cm} % Espaçamento entre linhas
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_100.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Cauchy/Erro Tipo I/erro_tipo_I_cauchy_100.pdf}
         \caption{Tamanho amostral \(n = 100\)}
-        \label{fig:gamma_100}
+        \label{fig:cauchy_100}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_300.pdf}
+        \includegraphics[width=\textwidth]{Distribuição cauchy/Erro Tipo I/erro_tipo_I_cauchy_300.pdf}
         \caption{Tamanho amostral \(n = 300\)}
-        \label{fig:gamma_300}
+        \label{fig:cauchy_300}
     \end{subfigure}
     
     % Terceira linha
     \vspace{0.5cm} % Espaçamento entre linhas
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_500.pdf}
+        \includegraphics[width=\textwidth]{Distribuição cauchy/Erro Tipo I/erro_tipo_I_cauchy_500.pdf}
         \caption{Tamanho amostral \(n = 500\)}
-        \label{fig:gamma_500}
+        \label{fig:cauchy_500}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_1000.pdf}
+        \includegraphics[width=\textwidth]{Distribuição cauchy/Erro Tipo I/erro_tipo_I_cauchy_1000.pdf}
         \caption{Tamanho amostral \(n = 1000\)}
-        \label{fig:gamma_1000}
+        \label{fig:cauchy_1000}
     \end{subfigure}
 \end{figure}
 
-%%%%%%%%%% Poder do Teste -> Distribuição Gamma %%%%%%%%%%
+%%%%%%%%%% Poder do Teste -> Distribuição Cauchy %%%%%%%%%%
 \begin{figure}[H]
     \centering
-    \caption{Comparação do Poder do Teste dos testes AD, CM, DG, LL, JB, KS, ZA, ZC e ZK em função do tamanho amostral para a \textbf{Distribuição} \(\textbf{Gamma}(10, 1/3)\).}
-    \label{fig:poder_teste_dist_gamma}
+    \caption{Comparação do Poder do Teste dos testes AD, CM, DG, LL, JB, KS, ZA, ZC e ZK em função do tamanho amostral para a \textbf{Distribuição} \(\textbf{Cauchy}(0, 1)\).}
+    \label{fig:poder_teste_dist_cauchy}
     
     % Primeira linha
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_30.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Cauchy/Poder do Teste/poder_teste_cauchy_30.pdf}
         \caption{Tamanho amostral \(n = 30\)}
-        \label{fig:gamma_poder_30}
+        \label{fig:cauchy_poder_30}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_50.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Cauchy/Poder do Teste/poder_teste_cauchy_50.pdf}
         \caption{Tamanho amostral \(n = 50\)}
-        \label{fig:gamma_poder_50}
+        \label{fig:cauchy_poder_50}
     \end{subfigure}
     
     % Segunda linha
     \vspace{0.5cm} % Espaçamento entre linhas
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_100.pdf}
+        \includegraphics[width=\textwidth]{Distribuição cauchy/Poder do Teste/poder_teste_cauchy_100.pdf}
         \caption{Tamanho amostral \(n = 100\)}
-        \label{fig:gamma_poder_100}
+        \label{fig:cauchy_poder_100}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_300.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_cauchy_300.pdf}
         \caption{Tamanho amostral \(n = 300\)}
-        \label{fig:gamma_poder_300}
+        \label{fig:cauchy_poder_300}
     \end{subfigure}
     
     % Terceira linha
     \vspace{0.5cm} % Espaçamento entre linhas
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_500.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_cauchy_500.pdf}
         \caption{Tamanho amostral \(n = 500\)}
-        \label{fig:gamma_poder_500}
+        \label{fig:cauchy_poder_500}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_1000.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_cauchy_1000.pdf}
         \caption{Tamanho amostral \(n = 1000\)}
-        \label{fig:gamma_poder_1000}
+        \label{fig:cauchy_poder_1000}
     \end{subfigure}
 \end{figure}
 
