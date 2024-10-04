@@ -80,11 +80,15 @@ Duas formas de avaliar o desempenho de um teste é analisar as \textbf{Taxas de 
 
 Nesse contexto, o objetivo do trabalho foi avaliar as taxas de erro tipo I e poder dos testes de normalidade implementados na linguagem de programação \textbf{\textit{R 4.4.1}} (R CORE TEAM, 2023) e um ambiente de desenvolvimento integrado chamado \textbf{Rstudio} \textit{versão 1.12}, para decidir quais apresentam o melhor desempenho.
 
-\section{Testes de Normalidade}
+\section{Referencial Teórico}
+\subsection{Distribuição Normal}
+\subsection{Testes de Normalidade}
 
-A seguir serão apresentados os testes de normalidade selecionados para realização da simulação de monte carlo.
+A seguir serão apresentados os testes de normalidade selecionados para realização da simulação de Monte Carlo. Foram selecionados vários testes para este estudo. Dentre estes testes, tem-se \textit{testes clássicos}, como Shapiro-Wilk, Kolmogorov-Smirnov, etc. e \textit{testes modernos}, propostos por Zhang (2002).\vskip0.3cm
 
-\subsection{kolmogorov-Smirnov}
+Com o objetivo de encontrar o mais adequado e poderoso teste de aderência à distribuição Normal, em função de diferentes tamanhos amostrais.
+
+\subsubsection{kolmogorov-Smirnov}
 
 O teste de kolmogorov-Smirnov é uma referência aos matemáticos russos \textbf{Andrey kolmogorov} e \textbf{Vladimir Ivanovich Smirnov}. Este é uma prova de bondade de ajuste para dados contínuos, o quanto a amostra provem de uma população com uma determinada distribuição teórica. Especificando quanto a distribuição de frequência acumulada observada se aproxima da distribuição aacumulada teórica.\vskip0.3cm
 
@@ -116,10 +120,17 @@ Para o teste de Lilliefors, a função do R é a \texttt{lillie.test()} do pacot
 Anderson e Darling (1952) propuseram um teste de normalidade baseado na função de distribuição empírica, para distribuições com parâmetros conhecidos, definido como: 
 
 \begin{equation}
-    A = -n - \frac{1}{n} \sum_{i=1}^{n} [(2i-1)(ln \ \ p_{(i)} + ln(1- p_{(n-1+i)})]
+    A = -n - \frac{1}{n} \sum_{i=1}^{n} [(2i-1)[ \ln (p_{(i)}) + \ln(1- p_{(n-1+i)})]
 \end{equation}
 
 Em que $p_{(i)}$ são os percentis ordenados da distribuição normal padrão, $\phi$ é a função de distribuição acumulada nomal padrão, x é a média amostral e s é o desvio padrão amostral.\vskip0.3cm
+
+O cálculo do p-valor foi proposto posteriormente, por Stephens (1986), e é encontrado através da fórmula estatística ajustada,
+
+\begin{equation}
+    Z = A \left[ \left(1.0 + \frac{0.75}{n} \right)+  \left(n+\frac{2.25}{n^{2}} \right) \right]
+\end{equation}
+
 
 No R a função \texttt{ad.test()} do pacote \textit{nortest} fornece a estatística de teste e o p-valor. \vskip0.3cm
 
@@ -143,8 +154,6 @@ sendo $m=(m_{1},m_{2},...,m_{n})^{T}$ o vetor de valores esperados das estatíst
 
 O teste de D'Agostino-Pearson utiliza as estatísticas de assimetria (Skewness) e curtose (Kurtosis) para verificar a normalidade. A fórmula envolve calcular ambas as medidas e combiná-las em uma estatística conjunta (D'AGOSTINO \& PEARSON, 1973).\vskip0.3cm
 
-
-
 Com isso, a primeira parte da fórmula a seguir mede o grau de $\textbf{assimetria}$ dos dados (\textit{skewness}):
 
 \begin{equation}
@@ -157,7 +166,6 @@ Com relação a segunda parte da fórmula, mede o grau de achatamento($\textbf{c
 g_{2} = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \times \sum_{i=1}^{n} \left(  \frac{(x_{i}-\bar{x})^{4}}{s^{4}} \right) - \frac{3(n-1)^{2}}{(n-2)(n-3)}
 \end{equation}
 
-\newpage
 onde, $n$ é o tamanho da amostra, $\bar{x}$ é a média da amostra, $x_{i}$ são os valores individuais da amostra e $s$ é o desvio padrão da amostra.\vskip0.3cm
 
 A estatística do teste  D'Agostino-Pearson é a soma das estatísticas z-normalizadas de assimetria ($G_{1}$) e curtose ($G_{2}$):\vskip0.3cm
@@ -181,7 +189,7 @@ apesar de ambos avaliarem as diferenças entre as distribuições empírica e te
 Este teste foi proposto por Harold Cramér e Richard Von Mises, em 1928. Porém, algumas modificações foram criadas. Darling (1957) definiu a estatística teste da seguinte forma:
 
 \begin{equation}
-    W = \frac{1}{12n} + \sum \left[  \frac{2i-1}{2n} - p_{(i)}\right]^{2}
+    W = \frac{1}{12n} + \sum \left[ p_{(i)} - \frac{2i-1}{2n} \right]^{2}
 \end{equation}
 
 onde $n$ é o tamanho amostral, $p_{i} = \phi \left(  \frac{x_{i}-\bar{x}}{s} \right)$, $\phi$ é a função de distribuição acumulada normal padrão, com $\bar{x}$ e $s$, respectivamente, a média e o desvio-padrão amostral.\vskip0.3cm
@@ -203,7 +211,7 @@ Em relação ao Teste de Jarque-Bera foi utilizado a função  \texttt{JarqueBer
 \end{equation}
 
 
-em que $\mu_{k} = \sum_{i=1}^{n} (x_{i}- \Bar{x})^{k}$, $J_{n} = \sqrt{\frac{\pi}{2}}\frac{\sum_{i=1}^{n}|x_{i}-M|}{n}$, já M é a mediana dos valores de $x_{i}$ da amostra e $C_{1}$ e $C_{2}$ são constantes positivas que podem ser obtidas através de simulação via monte carlo. \vskip0.3cm
+em que $\mu_{k} = \sum_{i=1}^{n} (x_{i}- \Bar{x})^{k}$, $J_{n} = \sqrt{\frac{\pi}{2}}\frac{\sum_{i=1}^{n}|x_{i}-M|}{n}$, já M é a mediana dos valores de $x_{i}$ da amostra e $C_{1}$ e $C_{2}$ são constantes positivas que podem ser obtidas através de simulação via Monte Carlo. \vskip0.3cm
 
 \subsection{Zhang(2002)}
 
@@ -214,19 +222,19 @@ Nesse contexto, são fornecidos novos tipos de testes para normalidade, abrangen
 Assim, a nova estatística chamada $Z_{A}$ semelhantes à estatística do teste de Anderson-Darling, é definida como:
 
 \begin{equation}
-    Z_{A} = - \sum_{i=1}^{n} \left[  \frac{ln [F_{0}(X_{(i)})]}{(n-i)+0.5} + \frac{1-F_{0}(X_{(i)})}{i-0.5}  \right]  
+    Z_{A} = - \sum_{i=1}^{n} \left\{  \frac{ \ln[F_{0}(X_{(i)})]}{(n-i)+0.5} + \frac{1-F_{0}(X_{(i)})}{i-0.5}  \right\}  
 \end{equation}
 
-A próxima estatistica de teste $Z_{C}$, semelhantes à estatística do teste de Cramer-Von Mises, é apresentada como:
+A próxima estatistica de teste $Z_{C}$, é muito pareceida à estatística do teste de Cramer-Von Mises, é apresentada como:
 
 \begin{equation}
-    Z_{C} = \sum_{i=1}^{n}  \left[ln  \frac{F_{0}(X_{(I)})^{-1}-1}{(n-0.5)/(i-0.75)-1} \right]
+    Z_{C} = \sum_{i=1}^{n}  \left\{ \ln\left[ \frac{F_{0}(X_{(I)})^{-1}-1}{(n-0.5)/(i-0.75)-1} \right] \right\}
 \end{equation}
 
 A terceira estatística de teste definida como $Z_{K}$, similar à estatística do teste de Kolmogorov-Smirnov, é definida como:
 
 \begin{equation}
-Z_{K} = max \left[(i-0.5)ln \left[ \frac{i-0.5}{n F_{0}(X_{(i)})} \right]  + (n-i+0.5) ln \frac{(n-i)+0.5}{n[1-F_{0}(X_{(i)})]} \right]
+Z_{K} = max \left\{(i - 0,5) \ln\left[ \frac{i - 0,5}{n F_{0}(X_{(i)})} \right] + (n - i + 0,5) \ln\left[ \dfrac{(n - i) + 0,5}{n[1 - F_{0}(X_{(i)})]} \right] \right\}
 \end{equation}
 
 Em 2020, Cui e Zhou, criaram o pacote na linguagem de programação R chamado \textit{DistributionTest}, possibilitando o cálculo dos teste propostos por Zhang(2002). Com isso,  utilizou-se as funções: \texttt{za.test()}, \texttt{zc.test()} e \texttt{zk.test()} para aplicação das referidas estatísticas de teste. \vskip0.3cm
@@ -553,6 +561,9 @@ Para dados de distribuição normal, os testes avaliados foram exatos, controlan
 \noindent SHAPIRO, S. S.; WILK, M. B. An analysis of variance test for normality (complete samples). {\it Biometrika}, JSTOR, v. 52, n. 3/4, p. 591–611, 1965.\newline
     
 \noindent STEPHENS, M. A. The Anderson-Darling statistic. {\it Stanford University}, 1979.\newline
+
+
+\noindent STEPHENS, M.A. (1986): Tests based on EDF statistics. In: D’Agostino, R.B. and Stephens, M.A., eds.: Goodness-of-Fit Techniques. Marcel Dekker, New York.\newline
 
 \noindent THODE JUNIOR, H. Testing for Normality, New York: M Decker, 2002, 154p.
 
