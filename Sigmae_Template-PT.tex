@@ -1,4 +1,4 @@
-%\RequirePackage{lineno} % Numeração de linhas para revisão.
+\RequirePackage{lineno} % Numeração de linhas para revisão.
 \documentclass[a4paper,11pt]{article} % Classe do documento como artigo, tamanho A4 e fonte 11pt.
 \usepackage{fancyhdr} % Personalização de cabeçalhos e rodapés.
 \fancyhf{} % Limpa cabeçalhos e rodapés anteriores.
@@ -28,9 +28,9 @@
 \lfoot{}
 \cfoot{\small \slshape {\bf Sigmae}, Alfenas, v.xx, n.x, p. x-x, 20xx.} % Informações do rodapé
 \rfoot{}
-%\setpagewiselinenumbers
-%\modulolinenumbers[1]
-%\linenumbers
+\setpagewiselinenumbers
+\modulolinenumbers[1]
+\linenumbers
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{center}
@@ -80,8 +80,23 @@ Duas formas de avaliar o desempenho de um teste é analisar as \textbf{Taxas de 
 
 Nesse contexto, o objetivo do trabalho foi avaliar as taxas de erro tipo I e poder dos testes de normalidade implementados na linguagem de programação \textbf{\textit{R 4.4.1}} (R CORE TEAM, 2023) e um ambiente de desenvolvimento integrado chamado \textbf{Rstudio} \textit{versão 1.12}, para decidir quais apresentam o melhor desempenho.
 
+
+\newpage
 \section{Referencial Teórico}
-\subsection{Distribuição Normal}
+\subsection{A Distribuição Normal}
+
+Para o estudo de simulação é necessário definir uma das mais importantes  variáveis aleatórias contínuas, chamada distribuição normal.\vskip0.3cm
+
+Seja $X$ uma variável aleatória que assume todos os valores reais $- \infty < x < +\infty$, tem distribuição normal (ou gaussiana) com média $\mu$ e  variância $\sigma$, se sua função densidade de probabilidade (fdp) é dada por:
+
+\begin{equation}
+f(x) = \frac{1}{\sqrt{2 \pi \sigma}} \exp \left(-\frac{1}{2} \left[\frac{x- \mu}{\sigma} \right]^{2} \right) \ , \ - \infty < x < +\infty
+\end{equation}
+
+Os parâmetros  $\mu$ e $\sigma$ devem satisfazer às condições  $-\infty < \mu < +\infty$ e $\sigma^{2} > 0$. Denotamos esta distribuição por $X ~ N(\mu, \sigma^{2})$
+
+
+
 \subsection{Testes de Normalidade}
 
 A seguir serão apresentados os testes de normalidade selecionados para realização da simulação de Monte Carlo. Foram selecionados vários testes para este estudo. Dentre estes testes, tem-se \textit{testes clássicos}, como Shapiro-Wilk, Kolmogorov-Smirnov, etc. e \textit{testes modernos}, propostos por Zhang (2002).\vskip0.3cm
@@ -107,13 +122,28 @@ A estatística do teste é:
 Sendo
 
 \begin{equation}
-    D^{+} = max{\left[\frac{i}{n} - p_{(i)}\right]} \ \ e \ \ D^{-} = max{\left[p_{(i)} - \frac{i-1}{n}\right]}
+    D^{+} =   \underbrace{max}_{\mbox{i=1,...,n}}    {\left[\frac{i}{n} - p_{(i)}\right]} \ \ e \ \ D^{-} = \underbrace{max}_{\mbox{i=1,...,n}}  {\left[p_{(i)} - \frac{i-1}{n}\right]}
+\end{equation}
+
+$ p_{(i)}= \phi( \frac{x_{(i)-\Bar{x}}}{s} )$, sendo $\phi$ a função de distribuição acumulada normal padrão, com x e s, respectivamente, a média e o desvio padrão amostral dos dados.\vskip0.3cm
+
+
+O valor p é calculado a partir da fórmula de Dallal-Wilkinson (1986), com base na estatística modificada:
+
+\begin{equation}
+    Z = D \left[(\sqrt{n} - 0.01) + \frac{0.85}{\sqrt{n}} \right]
 \end{equation}
 
 
-$ p_{(i)}= \phi( \frac{x_{(i)-\Bar{x}}}{s} )$, sendo $\phi$ a função de distribuição acumulada normal padrão, com x e s, respectivamente, a média e o desvio padrão amostral.\vskip0.3cm
+\vskip0.3cm
+
 
 Para o teste de Lilliefors, a função do R é a \texttt{lillie.test()} do pacote \textit{nortest} que nos fornece as mesmas informações dos outros testes, a estatística do teste e o valor-p.\vskip0.3cm
+
+
+
+
+
 
 \subsection{Anderson Darling}
 
@@ -194,10 +224,10 @@ Este teste foi proposto por Harold Cramér e Richard Von Mises, em 1928. Porém,
 
 onde $n$ é o tamanho amostral, $p_{i} = \phi \left(  \frac{x_{i}-\bar{x}}{s} \right)$, $\phi$ é a função de distribuição acumulada normal padrão, com $\bar{x}$ e $s$, respectivamente, a média e o desvio-padrão amostral.\vskip0.3cm
 
-O cálculo do p-valor foi proposto posteriormente, por Stephens (1979), e é encontrado através da fórmula estatística ajustada,
+O cálculo do p-valor foi proposto posteriormente, por Stephens (1979), e é encontrado através da fórmula estatística,
 
 \begin{equation}
-    Z = W(1 + 0,5n)
+    Z = W \left(1 + \frac{0.5}{n} \right)
 \end{equation}
 
 A função \texttt{cmv.test()} do pacote \textit{nortest} foi usada para o teste de Cramér-Von Mises, fornecendo a estatística e o valor-p.\vskip0.3cm
@@ -234,14 +264,14 @@ A próxima estatistica de teste $Z_{C}$, é muito pareceida à estatística do t
 A terceira estatística de teste definida como $Z_{K}$, similar à estatística do teste de Kolmogorov-Smirnov, é definida como:
 
 \begin{equation}
-Z_{K} = max \left\{(i - 0,5) \ln\left[ \frac{i - 0,5}{n F_{0}(X_{(i)})} \right] + (n - i + 0,5) \ln\left[ \dfrac{(n - i) + 0,5}{n[1 - F_{0}(X_{(i)})]} \right] \right\}
+Z_{K} = \underbrace{max}_{\mbox{i=1,...,n}} \left\{(i - 0,5) \ln\left[ \frac{i - 0,5}{n F_{0}(X_{(i)})} \right] + (n - i + 0,5) \ln\left[ \dfrac{(n - i) + 0,5}{n[1 - F_{0}(X_{(i)})]} \right] \right\}
 \end{equation}
 
 Em 2020, Cui e Zhou, criaram o pacote na linguagem de programação R chamado \textit{DistributionTest}, possibilitando o cálculo dos teste propostos por Zhang(2002). Com isso,  utilizou-se as funções: \texttt{za.test()}, \texttt{zc.test()} e \texttt{zk.test()} para aplicação das referidas estatísticas de teste. \vskip0.3cm
 
 %Zhang, J.; Wu, Y. Testes de razão de verossimilhança para normalidade. Comput. Stat. Dados Anal. 2005 , 49 , 709–721
 
-
+\newpage
 
 %%%%%%%%%% 2. Materiais e Métodos %%%%%%%%%%
 \section{Materiais e Métodos}
@@ -276,6 +306,9 @@ A proporção de rejeições incorretas foi calculada para cada teste, permitind
 Foi conduzida uma análise estatística em que os dados foram agrupados em diferentes distribuições com tamanhos de amostra variados. Utilizou-se o teste Kappa-Fleiss (descrito por CONGER, 1980) através da função \texttt{Kappam.fleiss()} do pacote \textit{irr}, com o objetivo de avaliar o nível de concordância entre os testes de normalidade empregados na decisão de aceitar ou rejeitar a hipótese nula de normalidade. \vskip0.3cm
 
 Esta avaliação de concordância foi realizada exclusivamente para amostras que não apresentaram distribuição normal. O foco da análise foi verificar se o poder dos testes influencia diretamente na concordância entre eles.
+
+
+\newpage
 
 %%%%%%%%%% 2. Resultados e Discussão %%%%%%%%%%
 \section{Resultados e Discussão}
@@ -545,6 +578,10 @@ Para dados de distribuição normal, os testes avaliados foram exatos, controlan
     
 \noindent DARLING, D. A. The Kolmogorov-Smirnov, Cramer-von Mises tests. {\it The Annals of Mathematical Statistics}, JSTOR, v. 28, n. 4, p. 823–838, 1957.\newline
 
+
+\noindent Dallal, G.E. and Wilkinson, L. (1986): An analytic approximation to the distribution of Lilliefors’test for normality. The American Statistician, 40, 294–296.\newline
+
+
 \noindent D'Agostino, Ralph B.; Pearson, E. S. (1973). "Tests for Departure from Normality. Empirical Results for the Distributions of b2 and b1. Biometrika. 60(3): 613–622
 \newline
     
@@ -559,13 +596,14 @@ Para dados de distribuição normal, os testes avaliados foram exatos, controlan
 \noindent R CORE TEAM (2024). {\it R: A language and environment for statistical computing}. R Foundation for Statistical Computing, Vienna, Austria. Disponível em: \url{http://www.R-project.org/}.\newline
 
 \noindent SHAPIRO, S. S.; WILK, M. B. An analysis of variance test for normality (complete samples). {\it Biometrika}, JSTOR, v. 52, n. 3/4, p. 591–611, 1965.\newline
+
+\noindent STEPHENS, M.A. (1974): EDF statistics for goodness of fit and some comparisons. Journal of the American Statistical Association, 69, 730–737.\newline
     
 \noindent STEPHENS, M. A. The Anderson-Darling statistic. {\it Stanford University}, 1979.\newline
 
-
 \noindent STEPHENS, M.A. (1986): Tests based on EDF statistics. In: D’Agostino, R.B. and Stephens, M.A., eds.: Goodness-of-Fit Techniques. Marcel Dekker, New York.\newline
 
-\noindent THODE JUNIOR, H. Testing for Normality, New York: M Decker, 2002, 154p.
+\noindent THODE JUNIOR, HC. Testing for Normality, New York: M Decker, 2002, 154p.
 
 
 \end{flushleft}
