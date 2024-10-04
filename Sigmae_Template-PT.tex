@@ -76,24 +76,25 @@ De acordo com Dufour et al. (1998), aproximadamente 40 testes de normalidade est
 
 De modo geral, muitos métodos estatísticos requerem que os dados sigam uma distribuição normal, além de pressupor independência entre as observações. Isso levanta a questão: como podemos verificar se a distribuição dos dados em análise se aproxima de uma distribuição normal?\vskip0.3cm
 
+
 Duas formas de avaliar o desempenho de um teste é analisar as \textbf{Taxas de Erro Tipo I}, sob hipótese nula ($H_0$), e por meio do \textbf{Poder do Teste}, simulando-se dados sob a hipótese alternativa ($H_1$). \vskip0.3cm
 
 Nesse contexto, o objetivo do trabalho foi avaliar as taxas de erro tipo I e poder dos testes de normalidade implementados na linguagem de programação \textbf{\textit{R 4.4.1}} (R CORE TEAM, 2023) e um ambiente de desenvolvimento integrado chamado \textbf{Rstudio} \textit{versão 1.12}, para decidir quais apresentam o melhor desempenho.
 
 
-\newpage
+%\newpage
 \section{Referencial Teórico}
 \subsection{A Distribuição Normal}
 
 Para o estudo de simulação é necessário definir uma das mais importantes  variáveis aleatórias contínuas, chamada distribuição normal.\vskip0.3cm
 
-Seja $X$ uma variável aleatória que assume todos os valores reais $- \infty < x < +\infty$, tem distribuição normal (ou gaussiana) com média $\mu$ e  variância $\sigma$, se sua função densidade de probabilidade (fdp) é dada por:
+Seja $X$ uma variável aleatória que assume todos os valores reais $- \infty < x < +\infty$, tem distribuição normal (ou gaussiana) com média $\mu$ e  variância $\sigma$, se sua função densidade de probabilidade (fdp) é dada por (MEYER, 1987):
 
 \begin{equation}
 f(x) = \frac{1}{\sqrt{2 \pi \sigma}} \exp \left(-\frac{1}{2} \left[\frac{x- \mu}{\sigma} \right]^{2} \right) \ , \ - \infty < x < +\infty
 \end{equation}
 
-Os parâmetros  $\mu$ e $\sigma$ devem satisfazer às condições  $-\infty < \mu < +\infty$ e $\sigma^{2} > 0$. Denotamos esta distribuição por $X ~ N(\mu, \sigma^{2})$
+Os parâmetros  $\mu$ e $\sigma$ devem satisfazer às condições  $-\infty < \mu < +\infty$ e $\sigma^{2} > 0$. Denotamos esta distribuição por $X \backsim N(\mu, \sigma^{2})$
 
 
 
@@ -109,7 +110,7 @@ O teste de kolmogorov-Smirnov é uma referência aos matemáticos russos \textbf
 
 O teste de kolmogorov-Smirnov foi aplicado usando a função \texttt{ks.test()} do pacote \textit{stats}. \vskip0.3cm
 
-\subsection{Lilliefors}
+\subsubsection{Lilliefors}
 
 Lilliefors (1967) propôs modificar os parâmetros do teste de kolmogorov-smirnov para simplificar os cálculos e resolver a limitação utilizando estimativas populacionais da média e desvio-padrão.\vskip0.3cm
 
@@ -145,9 +146,9 @@ Para o teste de Lilliefors, a função do R é a \texttt{lillie.test()} do pacot
 
 
 
-\subsection{Anderson Darling}
+\subsubsection{Anderson Darling}
 
-Anderson e Darling (1952) propuseram um teste de normalidade baseado na função de distribuição empírica, para distribuições com parâmetros conhecidos, definido como: 
+Anderson e Darling (1952) sugeriram um teste de normalidade baseado na função de distribuição empírica, para distribuições com parâmetros conhecidos, definido como: 
 
 \begin{equation}
     A = -n - \frac{1}{n} \sum_{i=1}^{n} [(2i-1)[ \ln (p_{(i)}) + \ln(1- p_{(n-1+i)})]
@@ -164,7 +165,7 @@ O cálculo do p-valor foi proposto posteriormente, por Stephens (1986), e é enc
 
 No R a função \texttt{ad.test()} do pacote \textit{nortest} fornece a estatística de teste e o p-valor. \vskip0.3cm
 
-\subsection{Shapiro Wilk}
+\subsubsection{Shapiro Wilk}
 
 O teste proposto por Shapiro e Wilk (1965) é considerado mais sensível para diversas distribuições, no R foi a função \texttt{shapiro.test()} do pacote \textit{nortest} fornece a estatística teste e o valor-p. Para verificar se uma amostra segue uma distribuição normal, utiliza-se a seguinte estatística de teste: 
 
@@ -180,7 +181,7 @@ em que $y_{i}$ é o o-ésimo valor da amostra observada, $\hat{y}$ é a média a
 
 sendo $m=(m_{1},m_{2},...,m_{n})^{T}$ o vetor de valores esperados das estatísticas de ordem da amostra e $V$ é a matriz das covariâncias desta estatística.\vskip0.3cm
 
-\subsection{D’Agostino-Pearson}
+\subsubsection{D’Agostino-Pearson}
 
 O teste de D'Agostino-Pearson utiliza as estatísticas de assimetria (Skewness) e curtose (Kurtosis) para verificar a normalidade. A fórmula envolve calcular ambas as medidas e combiná-las em uma estatística conjunta (D'AGOSTINO \& PEARSON, 1973).\vskip0.3cm
 
@@ -209,9 +210,7 @@ O valor de $K^{2}$ segue uma distribuição qui-quadrado com 2 graus de liberdad
 NO que tante ao teste de D’Agostino-Pearson foi usada a função \texttt{agostino.test()} pertencente ao pacote \textit{moments}.\vskip0.3cm
 
 
-
-
-\subsection{Cramér-Von Mises}
+\subsubsection{Cramér-Von Mises}
 
 O teste de Cramér-von Mises é uma alternativa ao teste de Kolmogorov-Smirnov, pois
 apesar de ambos avaliarem as diferenças entre as distribuições empírica e teórica, a estatística de teste é calculada de outra maneira.\vskip0.3cm
@@ -232,7 +231,7 @@ O cálculo do p-valor foi proposto posteriormente, por Stephens (1979), e é enc
 
 A função \texttt{cmv.test()} do pacote \textit{nortest} foi usada para o teste de Cramér-Von Mises, fornecendo a estatística e o valor-p.\vskip0.3cm
 
-\subsection{Jarque-Bera}
+\subsubsection{Jarque-Bera}
 
 Em relação ao Teste de Jarque-Bera foi utilizado a função  \texttt{JarqueBeraTest()} do pacote \textit{DescTools}. Este teste foi proposto por Jarque e Bera (1980) e baseia-se na diferença entre a simetria e a curtose dos dados amostrais e teóricos da distribuição normal. A estatística do teste é definida como: 
 
@@ -243,7 +242,7 @@ Em relação ao Teste de Jarque-Bera foi utilizado a função  \texttt{JarqueBer
 
 em que $\mu_{k} = \sum_{i=1}^{n} (x_{i}- \Bar{x})^{k}$, $J_{n} = \sqrt{\frac{\pi}{2}}\frac{\sum_{i=1}^{n}|x_{i}-M|}{n}$, já M é a mediana dos valores de $x_{i}$ da amostra e $C_{1}$ e $C_{2}$ são constantes positivas que podem ser obtidas através de simulação via Monte Carlo. \vskip0.3cm
 
-\subsection{Zhang(2002)}
+\subsubsection{Zhang(2002)}
 
 Em 2002, Zhang apresentou 3 novos testes de normalidade, baseados na função de distribuição empírica, no qual modifica os parâmetros dos testes tradicionais de Anderson-Darling, Cramér-Von Mises e kolmogorov-Smirnov e cria três testes($Z_{A}, Z_{C}$ e $Z_{K}$) adaptados para aderência a normalidade.\vskip0.3cm
 
@@ -271,7 +270,7 @@ Em 2020, Cui e Zhou, criaram o pacote na linguagem de programação R chamado \t
 
 %Zhang, J.; Wu, Y. Testes de razão de verossimilhança para normalidade. Comput. Stat. Dados Anal. 2005 , 49 , 709–721
 
-\newpage
+
 
 %%%%%%%%%% 2. Materiais e Métodos %%%%%%%%%%
 \section{Materiais e Métodos}
@@ -308,8 +307,7 @@ Foi conduzida uma análise estatística em que os dados foram agrupados em difer
 Esta avaliação de concordância foi realizada exclusivamente para amostras que não apresentaram distribuição normal. O foco da análise foi verificar se o poder dos testes influencia diretamente na concordância entre eles.
 
 
-\newpage
-
+%\newpage
 %%%%%%%%%% 2. Resultados e Discussão %%%%%%%%%%
 \section{Resultados e Discussão}
 Os resultados serão apresentados de acordo com as taxas de erro tipo I, na situação de distribuição normal, e poder, na situação de outras distribuições. Na figura 1 estão representadas as taxas de erro tipo I dos testes de normalidade Anderson-Darling (AD), Crámer-Von-Mises (CM), D’Agostino-Pearson (DG), Jarque-Bera (JB), Kolmogorov-Smirnov (KS), Lilliefors (LL), Shapiro-Wilk (SW) e Zhang (Za, Zc, Zk) para diferentes tamanhos amostrais. \vskip0.3cm
@@ -321,8 +319,9 @@ Seus valores ficarm dentro do IC para proporções (\textit{p}) construídos a 9
 
 Segundo Thode Junior (2002), em resultados de simulação observou-se que, os testes de kolmogorov-smirnov e Qui-quadrado possuem poder tão baixo que deveriam ser desconsiderados como testes de normalidade.\vskip0.3cm
 
-%Foi desenvolvido um script na linguagem de programação R, para auxiliar nos cálculos da simulação de Monte Carlo armazenado no repositório \textit{Github} que pode ser acessado no seguinte link: \href{https://github.com/MarioDhiego/Teste\_Normalidade}{https://github.com/MarioDhiego/Teste\_Normalidade}
-$\vskip0.3cm
+Foi desenvolvido um script na linguagem de programação R, para auxiliar nos cálculos da simulação de Monte Carlo armazenado no repositório \textit{Github} que pode ser acessado no seguinte link: \href{https://github.com/MarioDhiego/Teste\_Normalidade}{https://github.com/MarioDhiego/Teste\_Normalidade}
+
+\vskip0.3cm
 
 
 De acordo com a tabela X, os resultados do teste de kappa para diferentes distribuições descritas anteriormente, percebe-se que, para a maioria das distribuições, os testes tiveram forte concordância entre rejeitar ou não a hipótese de normalidade. 
@@ -333,11 +332,13 @@ De acordo com a tabela X, os resultados do teste de kappa para diferentes distri
 \centering
  \begin{tabular}{c|c}
 \hline \hline
-Distribuição de Probabilidade  &  Teste kappa-Fleiss\\
+Distribuição de Probabilidade  &  Teste de kappa-Fleiss\\
 \hline
       Normal(0,1)              &  \\
-      Beta(2,5)                & \\
-      Gamma(10,1/3)            & \\
+      Beta(2,5)                &  \\
+      Gamma(10,1/3)            &  \\
+      Cauchy(0,1)              &  \\
+      Exponnencial()           &  \\
 \hline \hline
     \end{tabular}
     \caption{Teste kappa-Fleiss de Concordância para os testes de normalidade.}
@@ -565,7 +566,122 @@ Distribuição de Probabilidade  &  Teste kappa-Fleiss\\
 \end{figure}
 
 
-\section{Conclusões}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Erro Tipo I -> Distribuição Gamma %%%%%%%%%%
+\begin{figure}[H]
+    \centering
+    \caption{Comparação do Erro Tipo I dos testes AD, CM, DG, LL, JB, KS, LL, ZA, ZC e ZK em função do tamanho amostral para a \textbf{Distribuição} $\textbf{Gamma}(10, 1/3)$.}
+    \label{fig:erro_tipo_I_dist_gamma}
+    
+    % Primeira linha
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_30.pdf}
+        \caption{Tamanho amostral \(n = 30\)}
+        \label{fig:gamma_30}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_50.pdf}
+        \caption{Tamanho amostral \(n = 50\)}
+        \label{fig:gamma_50}
+    \end{subfigure}
+    
+    % Segunda linha
+    \vspace{0.5cm} % Espaçamento entre linhas
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_100.pdf}
+        \caption{Tamanho amostral \(n = 100\)}
+        \label{fig:gamma_100}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_300.pdf}
+        \caption{Tamanho amostral \(n = 300\)}
+        \label{fig:gamma_300}
+    \end{subfigure}
+    
+    % Terceira linha
+    \vspace{0.5cm} % Espaçamento entre linhas
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_500.pdf}
+        \caption{Tamanho amostral \(n = 500\)}
+        \label{fig:gamma_500}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Erro Tipo I/erro_tipo_I_gamma_1000.pdf}
+        \caption{Tamanho amostral \(n = 1000\)}
+        \label{fig:gamma_1000}
+    \end{subfigure}
+\end{figure}
+
+%%%%%%%%%% Poder do Teste -> Distribuição Gamma %%%%%%%%%%
+\begin{figure}[H]
+    \centering
+    \caption{Comparação do Poder do Teste dos testes AD, CM, DG, LL, JB, KS, ZA, ZC e ZK em função do tamanho amostral para a \textbf{Distribuição} \(\textbf{Gamma}(10, 1/3)\).}
+    \label{fig:poder_teste_dist_gamma}
+    
+    % Primeira linha
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_30.pdf}
+        \caption{Tamanho amostral \(n = 30\)}
+        \label{fig:gamma_poder_30}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_50.pdf}
+        \caption{Tamanho amostral \(n = 50\)}
+        \label{fig:gamma_poder_50}
+    \end{subfigure}
+    
+    % Segunda linha
+    \vspace{0.5cm} % Espaçamento entre linhas
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_100.pdf}
+        \caption{Tamanho amostral \(n = 100\)}
+        \label{fig:gamma_poder_100}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_300.pdf}
+        \caption{Tamanho amostral \(n = 300\)}
+        \label{fig:gamma_poder_300}
+    \end{subfigure}
+    
+    % Terceira linha
+    \vspace{0.5cm} % Espaçamento entre linhas
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_500.pdf}
+        \caption{Tamanho amostral \(n = 500\)}
+        \label{fig:gamma_poder_500}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_gamma_1000.pdf}
+        \caption{Tamanho amostral \(n = 1000\)}
+        \label{fig:gamma_poder_1000}
+    \end{subfigure}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{Considerações Finais}
 
 Para dados de distribuição normal, os testes avaliados foram exatos, controlando a taxa de erro tipo I. Em relação ao poder, o desempenho dos testes foi afetado pelo tamanho da amostra e pelo tipo da distribuição. Todos se tornaram mais poderosos à medida que se aumentou o tamanho amostral. 
 
@@ -592,6 +708,8 @@ Para dados de distribuição normal, os testes avaliados foram exatos, controlan
 \noindent JIN ZHANG, 2002. "Powerful goodness‐of‐fit tests based on the likelihood ratio," Journal of the Royal Statistical Society Series B, Royal Statistical Society, vol. 64(2), pages 281-294, May.\newline
 
 \noindent LILLIEFORS, H. W. On the Kolmogorov-Smirnov test for normality with mean and variance unknown. {\it Journal of the American Statistical Association}, Taylor \& Francis, v. 62, n. 318, p. 399–402, 1967.\newline
+
+\noindent MEYER, Paul, L. – Probabilidade: Aplicação à Estatística – Ed. Livro Técnico, 1987. \newline
     
 \noindent R CORE TEAM (2024). {\it R: A language and environment for statistical computing}. R Foundation for Statistical Computing, Vienna, Austria. Disponível em: \url{http://www.R-project.org/}.\newline
 
