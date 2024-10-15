@@ -83,8 +83,37 @@ Nesse contexto, o objetivo do trabalho foi avaliar as taxas de erro tipo I e pod
 
 
 %\newpage
+%%%%%%%%%% 2. Materiais e Métodos %%%%%%%%%%
+\section{Materiais e Métodos}
+A Simulação de Monte Carlo foi utilizada para simular amostras normais sob a hipótese nula de normalidade, $H_0$, para avaliar as taxas de erro tipo I dos testes e amostras sob a hipótese alternativa, $H_1$, ou seja, dados de distribuições não normais para avaliar o poder. Para cada cenário, os testes de normalidade foram aplicados ao nível de significância pré-estabelecido de $\alpha = 5\%$. \vskip0.3cm
+
+Caso tenha sido rejeitada a hipótese nula e a amostra tenha sido gerada da distribuição normal, foi cometido um erro do tipo I. Da mesma forma se a hipótese nula for rejeitada e a amostra foi obtida de uma população não-normal, uma decisão correta foi tomada. Não foi considerado o cenário de simulação gerando distribuições com a presença de outliers. As distribuições foram simuladas por meio das funções \textit{random} do pacote base do R.
+
+\subsection{Simulação de Monte Carlo}
+Neste estudo, a eficácia dos testes de normalidade foi avaliada por meio da simulação de distribuições tanto normais quanto não normais, abrangendo casos simétricos e assimétricos, como Normal, Uniforme, Beta, t-Student, Cauchy e Exponencial. Foram considerados seis tamanhos de amostra distintos para cada distribuição: 30, 50, 100, 300, 500 e 1000. Em cada caso, foram realizadas 1.000 replicações, durante as quais os p-valores dos testes de normalidade foram registrados para análise posterior. \vskip0.3cm
+
+%O desempenho dos seguintes testes de aderência aplicado no software R foi avaliado. 
+
+
+
+
+\subsection{Erro Tipo I}
+%Foram simuladas 1000 amostras aleatórias da distribuição Normal com média 0 e desvio-padrão 1, $Normal(0, 1)$, utilizando a função \texttt{rnorm()} do pacote base do R. 
+Após a aplicação dos Testes de Aderência à Distribuição Normal, que serão descritos na Seção (\ref{section:tests_norm}). Comparou-se o Nível Descritivo do Teste com o Erro Tipo I previamente fixado em 5\%, logo, $\alpha = 0,05$.\vskip0.3cm
+
+Para cada teste em que a hipótese de normalidade ($H_0$) foi rejeitada, os dados foram erroneamente considerados como não normais, resultando em taxas de erro tipo I. \vskip0.3cm
+
+A proporção de rejeições incorretas foi calculada para cada teste, permitindo a identificação de testes conservadores ou liberais com base na comparação com o nível de significância $\alpha$.
+
+\subsection{Teste de Kappa de Concordância}
+Foi conduzida uma análise estatística em que os dados foram agrupados em diferentes distribuições com tamanhos de amostra variados. Utilizou-se o teste Kappa-Fleiss (descrito por CONGER, 1980) através da função \texttt{Kappam.fleiss()} do pacote \textit{irr}, com o objetivo de avaliar o nível de concordância entre os testes de normalidade empregados na decisão de aceitar ou rejeitar a hipótese nula de normalidade. \vskip0.3cm
+
+Esta avaliação de concordância foi realizada exclusivamente para amostras que não apresentaram distribuição normal. O foco da análise foi verificar se o poder dos testes influencia diretamente na concordância entre eles.
+
+
+%\newpage
 \section{Referencial Teórico}
-\subsection{A Distribuição Normal}
+\subsection{Distribuição Normal}
 
 Para o estudo de simulação é necessário definir uma das mais importantes  variáveis aleatórias contínuas, chamada distribuição normal, sendo que a maioria dos fenômenos aleatórios pode ser descrita de forma aproximada por ele.\vskip0.3cm
 
@@ -98,7 +127,7 @@ Os parâmetros  $\mu$ e $\sigma$ devem satisfazer às condições  $-\infty < \m
 
 
 
-\subsection{Testes de Normalidade}
+\subsection{Testes de Normalidade} \label{section:tests_norm}
 
 A seguir serão apresentados os testes de normalidade selecionados para realização da simulação de Monte Carlo. Foram selecionados vários testes para este estudo. Dentre estes testes, tem-se \textit{testes clássicos}, como Shapiro-Wilk, Kolmogorov-Smirnov, etc. e \textit{testes modernos}, propostos por Zhang (2002).\vskip0.3cm
 
@@ -271,43 +300,7 @@ Em 2020, Cui e Zhou, criaram o pacote na linguagem de programação R chamado \t
 %Zhang, J.; Wu, Y. Testes de razão de verossimilhança para normalidade. Comput. Stat. Dados Anal. 2005 , 49 , 709–721
 
 
-
-%%%%%%%%%% 2. Materiais e Métodos %%%%%%%%%%
-\section{Materiais e Métodos}
-A Simulação de Monte Carlo foi utilizada para simular amostras normais sob a hipótese nula de normalidade, $H_0$, para avaliar as taxas de erro tipo I dos testes e amostras sob a hipótese alternativa, $H_1$, ou seja, dados de distribuições não normais para avaliar o poder. Para cada cenário, os testes de normalidade foram aplicados ao nível de significância pré-estabelecido de $\alpha = 5\%$. \vskip0.3cm
-
-Caso tenha sido rejeitada a hipótese nula e a amostra tenha sido gerada da distribuição normal, foi cometido um erro do tipo I. Da mesma forma se a hipótese nula for rejeitada e a amostra foi obtida de uma população não-normal, uma decisão correta foi tomada. Não foi considerado o cenário de simulação gerando distribuições com a presença de outliers. As distribuições foram simuladas por meio das funções \textit{random} do pacote base do R.
-
-\subsection{Simulação de Monte Carlo}
-Neste estudo, a eficácia dos testes de normalidade foi avaliada por meio da simulação de distribuições tanto normais quanto não normais, abrangendo casos simétricos e assimétricos, como Normal, Uniforme, Beta, t-Student, Cauchy e Exponencial. Foram considerados seis tamanhos de amostra distintos para cada distribuição: 30, 50, 100, 300, 500 e 1000. Em cada caso, foram realizadas 1.000 replicações, durante as quais os p-valores dos testes de normalidade foram registrados para análise posterior. \vskip0.3cm
-
-%O desempenho dos seguintes testes de aderência aplicado no software R foi avaliado. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Erro Tipo I}
-Foram simuladas 1000 amostras aleatórias da distribuição Normal com média 0 e desvio-padrão 1, $Normal(0, 1)$, utilizando a função \texttt{rnorm()} do pacote base do R. Após a aplicação dos testes de normalidade, se a hipótese de normalidade foi rejeitada a um nível nominal de significância de 0.05, os dados foram erroneamente considerados como não normais, resultando em taxas de erro tipo I. \vskip0.3cm
-
-A proporção de rejeições incorretas foi calculada para cada teste, permitindo a identificação de testes conservadores ou liberais com base na comparação com o nível de significância $\alpha$.
-
-\subsection{Teste de Kappa de Concordância}
-Foi conduzida uma análise estatística em que os dados foram agrupados em diferentes distribuições com tamanhos de amostra variados. Utilizou-se o teste Kappa-Fleiss (descrito por CONGER, 1980) através da função \texttt{Kappam.fleiss()} do pacote \textit{irr}, com o objetivo de avaliar o nível de concordância entre os testes de normalidade empregados na decisão de aceitar ou rejeitar a hipótese nula de normalidade. \vskip0.3cm
-
-Esta avaliação de concordância foi realizada exclusivamente para amostras que não apresentaram distribuição normal. O foco da análise foi verificar se o poder dos testes influencia diretamente na concordância entre eles.
-
-
-%\newpage
+\nempage
 %%%%%%%%%% 2. Resultados e Discussão %%%%%%%%%%
 \section{Resultados e Discussão}
 Os resultados serão apresentados de acordo com as taxas de erro tipo I, na situação de distribuição normal, e poder, na situação de outras distribuições. Na figura 1 estão representadas as taxas de erro tipo I dos testes de normalidade Anderson-Darling (AD), Crámer-Von-Mises (CM), D’Agostino-Pearson (DG), Jarque-Bera (JB), Kolmogorov-Smirnov (KS), Lilliefors (LL), Shapiro-Wilk (SW) e Zhang (Za, Zc, Zk) para diferentes tamanhos amostrais. \vskip0.3cm
@@ -343,10 +336,6 @@ Distribuição de Probabilidade  &  Teste de kappa-Fleiss\\
     \label{tab:my_label}
 \end{table}
 
-
-
-
-\newpage
 %%%%%%%%%% Erro Tipo I -> Distribuição Normal %%%%%%%%%%
 \begin{figure}[H]
     \centering
@@ -598,7 +587,7 @@ Distribuição de Probabilidade  &  Teste de kappa-Fleiss\\
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição cauchy/Erro Tipo I/erro_tipo_I_cauchy_300.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Cauchy/Erro Tipo I/erro_tipo_I_cauchy_300.pdf}
         \caption{Tamanho amostral \(n = 300\)}
         \label{fig:cauchy_300}
     \end{subfigure}
@@ -645,14 +634,14 @@ Distribuição de Probabilidade  &  Teste de kappa-Fleiss\\
     \vspace{0.5cm} % Espaçamento entre linhas
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição cauchy/Poder do Teste/poder_teste_cauchy_100.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Cauchy/Poder do Teste/poder_teste_cauchy_100.pdf}
         \caption{Tamanho amostral \(n = 100\)}
         \label{fig:cauchy_poder_100}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Distribuição Beta/Poder do Teste/poder_teste_cauchy_300.pdf}
+        \includegraphics[width=\textwidth]{Distribuição Cauchy/Poder do Teste/poder_teste_cauchy_300.pdf}
         \caption{Tamanho amostral \(n = 300\)}
         \label{fig:cauchy_poder_300}
     \end{subfigure}
