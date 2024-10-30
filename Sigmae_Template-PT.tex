@@ -317,7 +317,7 @@ Foi desenvolvido um script na linguagem de programação R, para auxiliar nos c�
 \vskip0.3cm
 
 
-De acordo com a tabela X, os resultados do teste de kappa para diferentes distribuições descritas anteriormente, percebe-se que, para a maioria das distribuições, os testes tiveram forte concordância entre rejeitar ou não a hipótese de normalidade. 
+De acordo com a tabela \ref{tab:my_label1}, os resultados do teste de kappa para diferentes distribuições descritas anteriormente, percebe-se que, para a maioria das distribuições, os testes tiveram forte concordância entre rejeitar ou não a hipótese de normalidade. 
 
 
 
@@ -327,14 +327,24 @@ De acordo com a tabela X, os resultados do teste de kappa para diferentes distri
 \hline \hline
 Distribuição de Probabilidade  &  Teste de kappa-Fleiss\\
 \hline
-      Normal(0,1)              &  \\
-      Beta(2,5)                &  \\
-      Cauchy(0,1)              &  \\
+      Normal(0,1)              &  0,93  \\
+      Beta(2,5)                &  0,89  \\
+      Cauchy(0,1)              &  0,81  \\
 \hline \hline
     \end{tabular}
     \caption{Teste kappa-Fleiss de Concordância para os testes de normalidade.}
-    \label{tab:my_label}
+    \label{tab:my_label1}
 \end{table}
+
+
+
+De acordo com a figura \ref{fig:erro_tipo_I_dist_norm} estão apresentados os valores do erro tipo I para a distribuição Normal Padrão (0,1) em função tamanho da amostra $n$. Os testes de Zhang(2002) $Z_{A}$, $Z_{C}$ e $Z_{K}$ pouco oscilam sobre o valor nominal, o tornando os testes mais precisos para calcular o erro tipo I. Os teste de Ardenson Darling e Kolmogorov-smirnov, são os menos precisos, ficando distante do valor nominal de 0.05.
+
+
+
+
+
+
 
 %%%%%%%%%% Erro Tipo I -> Distribuição Normal %%%%%%%%%%
 \begin{figure}[H]
