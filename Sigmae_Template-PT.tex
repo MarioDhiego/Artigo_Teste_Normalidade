@@ -64,7 +64,7 @@
 % ------------------------------------------------------------
 % Resumo em Inglês
 \noindent{\bf Abstract:} {\it 
-    The objective of this work was to evaluate the Type I Error rates and Power of the Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Cramer-Von-Mises (CVM) normality tests, and other modern tests proposed by Zhang (2002). These tests were implemented in the $R_{4.4.1}$ programming language to decide which ones presented the best performance. The methodology used was the Monte Carlo Simulation, which used the Normal, Beta, and Cauchy distributions. Six different sample sizes were simulated, and the tests were performed for each simulated sample. Under normality, the tests were exact, and regarding power, the performance was affected by the sample size and type of distribution. For samples larger than 500, the Zhang (2002) test showed the best performance, and in the case of smaller samples, in general, the Shapiro-Wilk test obtained the best results. The Kappa-Fleis test was applied to evaluate the agreement in decision-making. For most distributions, the tests had strong agreement; the KS and AD tests proved to be very low-powered, even for large samples.
+    The objective of this work was to evaluate the Type I Error rates and Power of the Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Cramer-Von-Mises (CVM) normality tests, and other modern tests proposed by Zhang (2002). These tests were implemented in the $R$ programming language to decide which ones presented the best performance. The methodology used was the Monte Carlo Simulation, which used the Normal, Beta, and Cauchy distributions. Six different sample sizes were simulated, and the tests were performed for each simulated sample. Under normality, the tests were exact, and regarding power, the performance was affected by the sample size and type of distribution. For samples larger than 500, the Zhang (2002) test showed the best performance, and in the case of smaller samples, in general, the Shapiro-Wilk test obtained the best results. The Kappa-Fleis test was applied to evaluate the agreement in decision-making. For most distributions, the tests had strong agreement; the KS and AD tests proved to be very low-powered, even for large samples.
 }
     
 \vspace{0.5cm}
@@ -97,7 +97,7 @@ A diversidade de testes e a variação em seus desempenhos tornam a comparação
 
 \vspace{0.5cm}
 
-De modo geral, muitos métodos estatísticos requerem que os dados sigam uma distribuição normal e que as observações sejam independentes. Verificar a proximidade da distribuição dos dados com a normalidade torna-se, portanto, uma tarefa fundamental para garantir a validade desses métodos. Mas como podemos assegurar que a distribuição dos dados se aproxima de uma distribuição normal? Duas métricas primordiais para avaliar o desempenho dos testes de normalidade são as \textbf{Taxas de Erro Tipo I}, calculadas sob a hipótese nula ($H_0$), e o \textbf{Poder do Teste}, que é mensurado sob a hipótese alternativa ($H_1$). A análise dessas métricas permite identificar a capacidade de cada teste em evitar erros de falso positivo e, ao mesmo tempo, sua eficácia em detectar desvios de normalidade quando eles de fato existem.
+De modo geral, muitos métodos estatísticos requerem que os dados sigam uma distribuição normal e que as observações sejam independentes. Verificar a proximidade da distribuição dos dados com a normalidade torna-se, portanto, uma tarefa fundamental para garantir a validade desses métodos. Mas como podemos assegurar que a distribuição dos dados se aproxima de uma distribuição normal? Duas métricas primordiais para avaliar o desempenho dos testes de normalidade são as \textbf{Taxas de Erro Tipo I}, calculadas sob a hipótese nula ($H_0$), e o \textbf{Poder do Teste}, que é mensurado sob a hipótese alternativa ($H_1$). A análise dessas métricas permite identificar a capacidade de cada teste em evitar erros de falso positivo e, ao mesmo tempo, sua eficácia em detectar desvios de normalidade quando eles de fato existem  (OLIVEIRA \& FERREIRA, 2010).
 
 \vspace{0.5cm}
 
@@ -108,7 +108,7 @@ Assim, o objetivo deste trabalho foi avaliar as taxas de erro tipo I e o poder d
 % ------------------------------------------------------------
 \subsection{Software Utilizado} % 2.1. Software Utilizado
 
-Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação $R$, empregando a IDE \href{https://posit.co/download/rstudio-desktop/}{\textit{\textbf{RStudio}}}, versão 1.12. Os seguintes pacotes foram utilizadas nas diversas etapas do processo:
+Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação $R$, empregando a IDE \href{https://posit.co/download/rstudio-desktop/}{\textit{\textbf{RStudio}}}, versão 1.12. Os seguintes pacotes foram utilizados nas diversas etapas do processo:
 
 \begin{itemize}
     \item \textbf{DistributionTest:} Fornece novos tipos de testes abrangentes que geralmente são muito mais poderosos do que os testes tradicionais (incluindo os testes Kolmogorov-Smirnov, Cramer-von Mises e AndersonDarling) \cite{DistributionTest};
@@ -197,11 +197,11 @@ Considere $X$ uma variável aleatória contínua que segue uma Distribuição No
 % ------------------------------------------------------------
 \subsection{Testes de Normalidade} \label{section:tests_norm} % 3.2. Testes de Normalidade
 
-A seguir serão apresentados os testes de normalidade que serão avaliados durante a simulação de Monte Carlo. Foram selecionados vários testes para este estudo. Dentre estes testes, tem-se testes clássicos, como Shapiro-Wilk, Kolmogorov-Smirnov, etc. e testes modernos, propostos por Zhang em 2002. Com o objetivo de encontrar o mais adequado e poderoso teste de aderência à distribuição Normal, em função de diferentes tamanhos amostrais.
+A seguir serão apresentados os testes de normalidade que serão avaliados durante a simulação de Monte Carlo. Foram selecionados vários testes para este estudo. Dentre estes testes, tem-se testes clássicos, como Shapiro-Wilk, Kolmogorov-Smirnov, etc., e testes modernos, propostos por Zhang em 2002. Com o objetivo de encontrar o mais adequado e poderoso teste de aderência à distribuição Normal, em função de diferentes tamanhos amostrais.
 
 \subsubsection{Kolmogorov-Smirnov}
 
-O teste de Kolmogorov-Smirnov é uma referência aos matemáticos russos \textbf{Andrey kolmogorov} e \textbf{Vladimir Ivanovich Smirnov}. Este é um teste de bondade de ajuste para dados contínuos, que avalia o quanto a amostra provém de uma população com uma determinada distribuição teórica. O teste verifica especificamente o grau de proximidade entre a distribuição de frequência acumulada observada e a distribuição acumulada teórica.  
+O teste de Kolmogorov-Smirnov é uma referência aos matemáticos russos \textbf{Andrey kolmogorov} e \textbf{Vladimir Ivanovich Smirnov}. Este é um teste de bondade de ajuste para dados contínuos, que avalia o quanto a amostra provém de uma população com uma determinada distribuição teórica. O teste verifica especificamente o grau de proximidade entre a distribuição de frequência acumulada observada e a distribuição acumulada teórica (LOPES et al, 2013).  
 
 \vspace{0.5cm}
 
@@ -215,7 +215,7 @@ Em que $I_{|- \infty, x|}(X_{i})$ é a função indicadora, igual a 1 se $X_{i} 
 
 \vspace{0.5cm}
 
-Assim, a  estatística de Kolmogorov-smirnov para uma dada função distribuição acumulada $F_{(X)}$ é definida por:
+Assim, a  estatística de Kolmogorov-Smirnov para uma dada função distribuição acumulada $F_{(X)}$ é definida por:
 
 \begin{equation}
     D_{n} = \max_{1 \leq i \leq n} \left| F_{n}(x_i) - F_{e}(x_i) \right|
@@ -225,7 +225,7 @@ O teste de kolmogorov-Smirnov foi aplicado usando a função \texttt{ks.test()} 
 
 \subsubsection{Lilliefors}
 
-Lilliefors (1967) propôs modificar os parâmetros do teste de kolmogorov-smirnov para simplificar os cálculos e resolver a limitação utilizando estimativas populacionais da média e desvio-padrão.
+Lilliefors (1967) propôs modificar os parâmetros do teste de kolmogorov-Smirnov para simplificar os cálculos e resolver a limitação utilizando estimativas populacionais da média e desvio-padrão.
 
 \vspace{0.5cm}
 
@@ -320,7 +320,7 @@ O valor de $K^{2}$ segue uma distribuição qui-quadrado com 2 graus de liberdad
 
 \vspace{0.5cm}
 
-NO que tante ao teste de D’Agostino-Pearson foi usada a função \texttt{agostino.test()} pertencente ao pacote \textit{moments}.\vskip0.3cm
+No que tante ao teste de D’Agostino-Pearson foi usada a função \texttt{agostino.test()} pertencente ao pacote \textit{moments}.\vskip0.3cm
 
 
 \subsubsection{Cramér-Von Mises}
@@ -335,7 +335,7 @@ Este teste foi proposto por Harold Cramér e Richard Von Mises, em 1928. Porém,
     W = \frac{1}{12n} + \sum \left[ p_{(i)} - \frac{2i-1}{2n} \right]^{2}
 \end{equation}
 
-onde $n$ é o tamanho amostral, $p_{i} = \phi \left(  \frac{x_{i}-\bar{x}}{s} \right)$, $\phi$ é a função de distribuição acumulada normal padrão, com $\bar{x}$ e $s$, respectivamente, a média e o desvio-padrão amostral.
+\noindent onde $n$ é o tamanho amostral, $p_{i} = \phi \left(  \frac{x_{i}-\bar{x}}{s} \right)$, $\phi$ é a função de distribuição acumulada normal padrão, com $\bar{x}$ e $s$, respectivamente, a média e o desvio-padrão amostral.
 
 \vspace{0.5cm}
 
@@ -356,7 +356,7 @@ Em relação ao Teste de Jarque-Bera foi utilizado a função  \texttt{JarqueBer
 \end{equation}
 
 
-em que $\mu_{k} = \sum_{i=1}^{n} (x_{i}- \Bar{x})^{k}$, $J_{n} = \sqrt{\frac{\pi}{2}}\frac{\sum_{i=1}^{n}|x_{i}-M|}{n}$, já M é a mediana dos valores de $x_{i}$ da amostra e $C_{1}$ e $C_{2}$ são constantes positivas que podem ser obtidas através de simulação via Monte Carlo.
+\noindent em que $\mu_{k} = \sum_{i=1}^{n} (x_{i}- \Bar{x})^{k}$, $J_{n} = \sqrt{\frac{\pi}{2}}\frac{\sum_{i=1}^{n}|x_{i}-M|}{n}$, já M é a mediana dos valores de $x_{i}$ da amostra e $C_{1}$ e $C_{2}$ são constantes positivas que podem ser obtidas através de simulação via Monte Carlo.
 
 \subsubsection{Zhang}
 
@@ -751,7 +751,11 @@ A seguir, teremos as Figuras que ilustram as Taxas de Erro Tipo I e Poder do Tes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Observa-se na Figura (\ref{fig:erro_tipo_I_dist_norm}), que ilustra as Taxas de Erro Tipo I em função do tamanho amostral, que três testes apresentam desempenho inferior ao esperado: \textit{Kolmogorov-Smirnov}, \textit{Anderson-Darling} e \textit{Jarque-Bera}. Esses testes exibem taxas de Erro Tipo I consideravelmente distantes de 50\%, o que seria o esperado para dados provenientes de uma distribuição normal em testes de normalidade.
 
+\vspace{0.5cm}
+
 Embora o teste \textit{Jarque-Bera} tenda a se aproximar desse valor à medida que o tamanho da amostra aumenta, os testes \textit{Kolmogorov-Smirnov} e \textit{Anderson-Darling} permanecem substancialmente afastados do desempenho ideal, mesmo em tamanhos amostrais maiores.
+
+\vspace{0.5cm}
 
 Por outro lado, os demais testes apresentaram resultados consistentes com o esperado, exibindo Taxas de Erro Tipo I próximas a 50\% e com variações mínimas ao redor desse valor.
 
@@ -759,15 +763,23 @@ Por outro lado, os demais testes apresentaram resultados consistentes com o espe
 
 Ao analisar a Figura (\ref{fig:poder_teste_dist_norm}), em conjunto com as informações fornecidas pela Figura (\ref{fig:erro_tipo_I_dist_norm}), fica evidente que os testes \textit{Kolmogorov-Smirnov} e \textit{Anderson-Darling} não são os mais apropriados para avaliar a normalidade dos dados.
 
+\vspace{0.5cm}
+
 Isso se deve ao fato de que o \textit{Poder do Teste} desses métodos permaneceu consistentemente inferior ao dos demais testes avaliados, independentemente do tamanho amostral. Assim, os resultados reforçam que os testes \textit{Kolmogorov-Smirnov} e \textit{Anderson-Darling} possuem uma capacidade limitada de detectar desvios da normalidade, sendo menos poderosos quando comparados aos outros métodos analisados.
 
 \vspace{0.5cm}
 
 A Figura (\ref{fig:erro_tipo_I_dist_beta}) apresenta as taxas de Erro Tipo I dos testes de normalidade aplicados à distribuição Beta, caracterizada por sua assimetria. Observa-se que, para pequenos tamanhos amostrais, as taxas de Erro Tipo I exibem uma tendência linear decrescente em função de $n$. À medida que o tamanho amostral aumenta, essa relação evolui gradualmente para um comportamento de decaimento exponencial.
 
+\vspace{0.5cm}
+
 Quando $n \to \infty$, as taxas de Erro Tipo I convergem para valores próximos de zero. Isso indica que, para amostras muito grandes, a probabilidade de rejeitar $H_{0}$ quando ela é verdadeira ($\alpha$) se torna extremamente baixa ou até nula. Esse comportamento evidencia uma limitação dos testes de normalidade na detecção de desvios em distribuições assimétricas à medida que o tamanho amostral cresce.
 
+\vspace{0.5cm}
+
 Entre os testes avaliados, destacam-se \textit{Kolmogorov-Smirnov} e \textit{Anderson-Darling}, que apresentaram uma probabilidade de rejeição de $H_{0}$ mais elevada do que os outros testes, mesmo quando $H_{0}$ é verdadeira. Esses testes mostram maior dificuldade em convergir para taxas de Erro Tipo I próximas de zero, o que os torna menos adequados para avaliar a normalidade em distribuições assimétricas.
+
+\vspace{0.5cm}
 
 Por outro lado, os testes propostos por Zhang (2002) se destacaram por apresentar as menores taxas de Erro Tipo I, além de convergir mais rapidamente para zero à medida que o tamanho amostral aumenta. Esses resultados reforçam a superioridade dos métodos de Zhang na avaliação de normalidade em cenários envolvendo distribuições assimétricas.
 
@@ -775,7 +787,11 @@ Por outro lado, os testes propostos por Zhang (2002) se destacaram por apresenta
 
 A Figura (\ref{fig:poder_teste_dist_beta}) apresenta o Poder do Teste em função do tamanho amostral ($n$) para os testes de normalidade aplicados à distribuição $Beta(2, 5)$.
 
+\newpage
+
 Conforme observado na Figura anterior (\ref{fig:erro_tipo_I_dist_beta}), as Taxas de Erro Tipo I exibem um decaimento exponencial em função de $n$. De forma inversa e análoga, a Figura (\ref{fig:poder_teste_dist_beta}) revela que o Poder do Teste inicialmente cresce de maneira linear e, gradualmente, assume um comportamento logarítmico à medida que o tamanho amostral aumenta. Isso implica que, com amostras maiores, o Poder do Teste converge para valores próximos a 100\%, ou até atinge 100\%, evidenciando a capacidade dos testes em detectar desvios de normalidade.
+
+\vspace{0.5cm}
 
 Os resultados também indicam claramente quais testes são mais poderosos e quais apresentam desempenho inferior. Mais uma vez, os testes propostos por Zhang (2002) destacaram-se como os mais poderosos, alcançando rapidamente o Poder de Teste próximo a 100\%. Em contraste, os testes de Kolmogorov-Smirnov e Anderson-Darling continuam a apresentar baixo poder e demoram mais, de forma considerável, para atingir a convergência total, reforçando suas limitações em contextos de assimetria.
 
@@ -787,7 +803,9 @@ A Figura (\ref{fig:erro_tipo_I_dist_cauchy}) evidencia que os testes \textit{Kol
 
 \vspace{0.5cm}
 
+A Figura (\ref{fig:poder_teste_dist_cauchy}) mostra o Poder do Teste em função do tamanho amostral para a distribuição $Cauchy(0, 1)$. Nota-se que os testes \textit{Kolmogorov-Smirnov} e \textit{Anderson-Darling} se mostraram como os testes menos poderosos, um pouco acima deles está o teste \textit{D'Agostino}. Os demais testes mostraram poucas diferenças entres si, com  do teste \textit{Jarque-Bera}, que por uma pequena diferença, se mostrou o teste mais poderoso para amostras de tamanho 30, 50, 100 e 300.
 
+Assim como nas demais Figuras, conforme se aumentou o tamanho da amostra, o Poder do Teste tende a 100\%. Kolmogorov-Smirnov e Anderson-Darling são os testes que mais demoraram a maximizar o Poder do Teste, seguidos pelo teste D'Agostino nessa marca. Outro ponto importante é que, para amostras de tamanho  
 
 \section{Considerações Finais}
 
@@ -822,16 +840,15 @@ Texto em aberto.
 
 \noindent LILLIEFORS, H. W. On the Kolmogorov-Smirnov test for normality with mean and variance unknown. {\it Journal of the American Statistical Association}, Taylor \& Francis, v. 62, n. 318, p. 399–402, 1967.\newline
 
+\noident Lopes, M. de M., Castelo Branco, V. T. F., & Soares, J. B. (2013). Utilização dos testes estatísticos de Kolmogorov-Smirnov e Shapiro-Wilk para verificação da normalidade para materiais de pavimentação. TRANSPORTES, 21(1), 59–66. \newline
+
 \noindent MEYER, Paul, L. – Probabilidade: Aplicação à Estatística – Ed. Livro Técnico, 1987. \newline
 
+\noindent Metropolis, N., & Ulam, S. (1949). The Monte Carlo Method. Journal of the American Statistical Association.\newline
 
-\noindent Metropolis, N., & Ulam, S. (1949). The Monte Carlo Method. Journal of the American Statistical Association.
-
-\newline
+\noindent OLIVEIRA, I.R.C.; FERREIRA, D.F. Multivariate extension of chi-squared univariate normality test. J. Stat. Comput. Simul.), London, v.80, n.5, p.513-526, 2010.\newline
 
 \noindent R CORE TEAM (2024). {\it R: A language and environment for statistical computing}. R Foundation for Statistical Computing, Vienna, Austria. Disponível em: \url{http://www.R-project.org/}.\newline
-
-
 
 \noindent Rubinstein, R. Y., & Kroese, D. P. (2016). Simulation and the Monte Carlo Method. Wiley.
 
