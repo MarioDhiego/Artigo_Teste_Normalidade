@@ -44,7 +44,7 @@
 % ------------------------------------------------------------
 % Resumo em Português
 \noindent{ \bf Resumo:} { \it
-    O objetivo deste trabalho foi avaliar as taxas de Erro Tipo I e Poder dos Testes de normalidade Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Crámer-Von-Mises (CVM) e de outros testes modernos propostos por Zhang (2002). Estes teste foram implementados na linguagem de programação $R_{4.4.1}$ para decidir quais apresentaram o melhor desempenho. A metodologia utilizada foi a Simulação de Monte Carlo, que utilizou as distribuições Normal, Beta e Cauchy. Foram simuladas seis diferentes tamanhos amostrais, a partir de cada amostra simulada foram realizados os testes. Sob normalidade, os testes foram exatos e, em relação ao poder, o desempenho foi afetado pelo tamanho da amostra e tipo de distribuição. Para amostras maiores que 500, o teste Zhang (2002) apresentou o melhor desempenho e no caso de amostras menores, de uma maneira geral, o teste Shapiro-Wilk obteve os melhores resultados. Aplicou-se o teste Kappa-Fleis para avaliar a concordância na tomada de decisão. Para a maioria das distribuições, os testes tiveram forte concordância; Os testes de KS e AD se mostraram muito pouco poderoso, mesmo para grandes amostras.
+    O objetivo deste trabalho foi avaliar as taxas de Erro Tipo I e Poder dos Testes de normalidade Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Crámer-Von-Mises (CVM) e de outros testes modernos propostos por Zhang (2002). Estes teste foram implementados na linguagem de programação $R_{4.4.1}$ para decidir quais apresentaram o melhor desempenho. A metodologia utilizada foi a Simulação de Monte Carlo, que utilizou as distribuições Normal, Beta e Cauchy. Foram simuladas seis diferentes tamanhos amostrais, a partir de cada amostra simulada foram realizados os testes. Sob normalidade, os testes foram exatos e, em relação ao poder, o desempenho foi afetado pelo tamanho da amostra e tipo de distribuição. Para amostras maiores que 500, o teste de Zhang (2002) apresentou o melhor desempenho. No caso de amostras menores, de modo geral, o teste Shapiro-Wilk obteve os melhores resultados. O teste de Kappa-Fleis foi aplicado para avaliar a concordância nas decisões. Para a maioria das distribuições, os testes tiveram forte concordância. Por outro lado, os testes de KS e AD tiveram baixa potência, mesmo em amostras grandes.
 }
 
 \vspace{0.5cm}
@@ -89,11 +89,11 @@
 % ------------------------------------------------------------
 \section{Introdução} % 1. Introdução
 
-Há aproximadamente 40 testes de normalidade estão disponíveis para análise estatística \cite{dufour1998simulation}. Contudo, esses testes, frequentemente, geram resultados opostos para o mesmo conjunto de dados, rejeitando ou não a hipótese de normalidade. Essa disparidade decorre das distintas abordagens e métodos de verificação empregados por cada teste, bem como da ampla variedade de amostras possíveis. Consequentemente, a eficácia de cada teste pode variar substancialmente conforme as características específicas da amostra analisada, o que dificulta a escolha de um teste universalmente aplicável e eficaz.
+Existem aproximadamente 40 testes de normalidade disponíveis para análises estatísticas \cite{dufour1998simulation}. No entanto, esses testes frequentemente produzem resultados contraditórios para o mesmo conjunto de dados, ora rejeitando, ora não rejeitando a hipótese de normalidade. Essa divergência decorre das diferentes abordagens e métodos empregados por cada teste, bem como da ampla variação nas características das amostras testadas. Como resultado, a eficácia de cada teste pode variar dependendo das particularidades da amostra analisada, o que dificulta a escolha de um teste que seja  universalmente aplicável e eficaz.
 
 \vspace{0.5cm}
 
-Essa diversidade de testes e a variação de seus desempenhos tornam a comparação entre eles essencial, especialmente em cenários que exploram diferentes tamanhos amostrais, níveis de assimetria e curtose. A compreensão de como cada teste se comporta sob condições variadas é crucial para identificar qual teste ou conjunto de testes apresenta maior robustez e acurácia em detectar desvios de normalidade, servindo assim como uma referência para pesquisadores e analistas de dados que dependem dessa análise em suas inferências.
+A diversidade de testes e a variação em seus desempenhos tornam a comparação entre eles indispensável, especialmente em cenários que envolvem diferentes tamanhos amostrais, níveis de assimetria e curtose. Compreender o comportamento de cada teste sob condições variadas é fundamental para identificar aquele , ou o conjunto de testes, com maior robustez e acurácia na detectação de desvios da normalidade. Essa análise fornece uma referência valiosa para pesquisadores e analistas de dados que dependem desses testes em suas inferências estatísticas.
 
 \vspace{0.5cm}
 
@@ -108,12 +108,12 @@ Assim, o objetivo deste trabalho foi avaliar as taxas de erro tipo I e o poder d
 % ------------------------------------------------------------
 \subsection{Software Utilizado} % 2.1. Software Utilizado
 
-Como já foi dito, para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação R 4.4.1, empregando a IDE \href{https://posit.co/download/rstudio-desktop/}{\textit{\textbf{RStudio}}}, \textit{versão 1.12}. Os seguintes pacotes foram utilizadas nas diversas etapas do processo:
+Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação $R$, empregando a IDE \href{https://posit.co/download/rstudio-desktop/}{\textit{\textbf{RStudio}}}, versão 1.12. Os seguintes pacotes foram utilizadas nas diversas etapas do processo:
 
 \begin{itemize}
     \item \textbf{DistributionTest:} Fornece novos tipos de testes abrangentes que geralmente são muito mais poderosos do que os testes tradicionais (incluindo os testes Kolmogorov-Smirnov, Cramer-von Mises e AndersonDarling) \cite{DistributionTest};
 
-    \item \textbf{irr:} Fornece Coeficientes de Confiabilidade e Concordância entre Avaliadores para dados quantitativos, ordinais e nominais: ICC, Coeficiente de Finn, Robinson's A, Kendall's W, Kappa de Cohen, etc. \cite{irr}.
+    \item \textbf{irr:} Fornece Coeficientes de Confiabilidade e Concordância entre Avaliadores para dados quantitativos, ordinais e nominais: Coeficiente de Finn, Robinson's A, Kendall's W, Kappa de Cohen, etc. \cite{irr}.
 
     \item \textbf{moments:} Funções para calcular: momentos, curtose de Pearson, Curtose e assimetria de Geary; testes relacionados a eles (Anscombe-Glynn, D'Agostino, Bonett-Seier) \cite{moments}.
 
@@ -123,15 +123,25 @@ Como já foi dito, para conduzir as análises e estimativas neste estudo, foi ut
 
     \item \textbf{dplyr:} Uma ferramenta rápida e consistente para trabalhar com objetos semelhantes a data frames, tanto na memória quanto fora dela \cite{dplyr}.
 
-    \item \textbf{tidyr:} Ferramentas para ajudar a criar dados arrumados, onde cada coluna é uma variável, cada linha é uma observação e cada célula contém um único valor \\ \cite{tidyr}.
+    \item \textbf{tidyr:} Ferramentas para ajudar a criar dados organizados, onde cada coluna é uma variável, cada linha é uma observação e cada célula contém um único valor \\ \cite{tidyr}.
 
     \item \textbf{magrittr:} Fornece um mecanismo para encadear comandos com um novo operador de pipe, \texttt{\%>\%}. Esse operador encaminha um valor ou o resultado de uma expressão para a próxima chamada de função/expressão. Há suporte flexível para o tipo de expressões do lado direito \cite{magrittr}.
 
-    \item \textbf{ggplot2:} Um sistema para criar gráficos 'declarativamente', baseado em 'The Grammar of Graphics'. Você fornece os dados, diz ao 'ggplot2' como mapear variáveis para estéticas, quais primitivas gráficas usar, e ele cuida dos detalhes \cite{ggplot2}.
+    \item \textbf{ggplot2:} Um sistema para criar gráficos declarativamente, baseado em \textbf{The Grammar of Graphics}. Você fornece os dados, diz ao $ggplot2$ como mapear variáveis para estéticas, quais primitivas gráficas usar, e ele cuida dos detalhes \cite{ggplot2}.
 \end{itemize}
 
 % ------------------------------------------------------------
 \subsection{Simulação de Monte Carlo} % 2.1. Simulação de Monto Carlo
+
+\subsubsection{Monte Carlo - MC}
+
+Os métodos de Monte Carlo são técnicas estatísticas baseadas em simulação para resolver problemas complexos que envolvem incerteza ou variabilidade. Utilizam amostras aleatórias para estimar valores numéricos de variáveis ou funções, sendo amplamente aplicados em finanças, física, biologia, estatística e outros campos (METROPOLIS \& ULAM, 1949). 
+
+\vspace{0.5cm}
+
+Esses métodos se destacam pela flexibilidade, pois permitem modelar processos que seriam intratáveis por métodos analíticos tradicionais. A precisão das estimativas aumenta com o número de simulações realizadas, e sua eficácia depende da qualidade do modelo probabilístico adotado. (GLASSERMAN, 2004) e (RUBISTEIN \& KROESE, 2016).
+
+\vspace{0.5cm}
 
 A Simulação de Monte Carlo foi empregada para gerar amostras sob a hipótese nula de normalidade ($H_0$), com o intuito de avaliar as taxas de erro tipo I dos testes, e sob a hipótese alternativa ($H_1$), ou seja, dados provenientes de distribuições não normais, para avaliar o poder dos testes.
 
@@ -141,12 +151,12 @@ Ao rejeitar a hipótese nula para uma amostra gerada a partir de uma distribuiç
 
 \vspace{0.5cm}
 
-Neste estudo, a eficácia dos testes de normalidade foi avaliada por meio da simulação de amostras tanto de distribuições normais quanto não normais, abrangendo casos simétricos e assimétricos, incluindo as distribuições Normal, Uniforme, Beta, t-Student, Cauchy e Exponencial. Foram considerados seis tamanhos amostrais distintos para cada distribuição: 30, 50, 100, 300, 500 e 1000. Em cada caso, foram realizadas 1.000 replicações, durante as quais os p-valores dos testes de normalidade foram registrados para análise posterior.
+Neste estudo, a eficácia dos testes de normalidade foi avaliada por meio da simulação de amostras tanto de distribuições normais quanto não normais, abrangendo casos simétricos e assimétricos, incluindo as distribuições Normal, Uniforme, Beta, t-Student, Cauchy e Exponencial. Foram considerados seis tamanhos amostrais distintos para cada distribuição: 30, 50, 100, 300, 500 e 1000. Em cada caso, foram realizadas 1.000 replicações, durante as quais os testes de normalidade foram registrados para análise posterior.
 
 % ------------------------------------------------------------
 \subsection{Erro Tipo I} % 2.1. Erro Tipo I
 
-Após a aplicação dos Testes de Aderência à Distribuição Normal, descritos na Seção (\ref{section:tests_norm}), o nível descritivo de cada teste foi comparado com a taxa de erro tipo I, previamente fixada em 5\%, isto é, $\alpha = 0,05$.
+Após a aplicação dos Testes de Aderência à Distribuição Normal, descritos na Seção (\ref{section:tests_norm}), o nível descritivo (valor-p) de cada teste foi comparado com a taxa de erro tipo I, previamente fixada em 5\%, isto é, $\alpha = 0,05$.
 
 \vspace{0.5cm}
 
@@ -154,16 +164,12 @@ Para cada teste em que a hipótese de normalidade ($H_0$) foi rejeitada, os dado
 
 \vspace{0.5cm}
 
-A proporção de rejeições incorretas foi então calculada para cada teste, permitindo a identificação de testes com tendências conservadoras ou liberais, conforme a comparação com o nível de significância $\alpha$.
-
-\vspace{0.5cm}
-
-Gerando, desta forma, as Taxas de Erro Tipo I \cite{carradori2014avaliaccao}.
+A proporção de rejeições incorretas foi então calculada para cada teste, permitindo a identificação de testes com tendências conservadoras ou liberais, conforme a comparação com o nível de significância $\alpha$, gerando as Taxas de Erro Tipo I \cite{carradori2014avaliaccao}.
 
 % ------------------------------------------------------------
 \subsection{Teste de Kappa de Concordância} % 2.3. Teste de Kappa de Concordância
 
-Foi conduzida uma análise estatística em que os dados foram agrupados em diferentes distribuições e variados tamanhos amostrais. Utilizou-se o teste Kappa de Fleiss, implementado pela função \texttt{Kappam.fleiss()} do pacote \textit{irr}, com o objetivo de avaliar o nível de concordância entre os testes de normalidade quanto à decisão de aceitar ou rejeitar a hipótese nula de normalidade.
+Foi conduzida uma análise estatística em que os dados foram agrupados em diferentes distribuições e variados tamanhos amostrais. Utilizamos o teste Kappa de Fleiss, implementado pela função \texttt{Kappam.fleiss()} do pacote \textit{irr}, com o objetivo de avaliar o nível de concordância entre os testes de normalidade quanto à decisão de aceitar ou rejeitar a hipótese nula de normalidade.
 
 \vspace{0.5cm}
 
@@ -175,27 +181,27 @@ Essa avaliação de concordância foi realizada exclusivamente para amostras pro
 % ------------------------------------------------------------
 \subsection{Distribuição Normal} % 3.1. Distribuição Normal
 
-Neste ponto, é introduzido um modelo essencial em probabilidade e inferência estatística: a \textit{Distribuição Normal}. Suas origens remontam aos estudos de Gauss sobre erros em observações astronômicas, realizados por volta de 1810, o que justifica a denominação “distribuição gaussiana” atribuída a esse modelo.
+A Distribuição Normal é um modelo de probabilidade essencial para a estatística. Suas origens remontam aos estudos de Gauss sobre erros em observações astronômicas, realizados por volta de 1810, o que justifica a denominação “distribuição gaussiana” atribuída a esse modelo.
 
 \vspace{0.5cm}
 
-Considere $X$ uma variável aleatória contínua que segue uma \textit{Distribuição Normal} com parâmetros $\mu$ e $\sigma^{2}$, onde $-\infty < \mu < +\infty$ e $\sigma^{2} > 0$. A função densidade de probabilidade (f.d.p.) de $X$ é dada pela Equação (\ref{equation:desityNormal}):
+Considere $X$ uma variável aleatória contínua que segue uma Distribuição Normal com parâmetros $\mu$ e $\sigma^{2}$, onde $-\infty < \mu < +\infty$ e $\sigma^{2} > 0$. A função densidade de probabilidade (f.d.p.) de $X$ é dada pela Equação (\ref{equation:desityNormal}):
 
 \begin{equation}
     f(x) = \dfrac{1}{\sqrt{2 \pi \sigma^2}} \ e^{{- \frac{(x - \mu)^{2}}{2 \sigma^2}}} \ , \ - \infty < x < +\infty \ ,
     \label{equation:desityNormal}
 \end{equation}
 
-\noindent onde $E(X) = \mu$ e $Var(X) = \sigma^2$. Para representar que $X$ segue uma distribuição normal, utiliza-se a notação $X \sim N(\mu, \sigma^2)$. Esta definição foi extraída de \cite{bussab2010estatistica}.
+\noindent onde $E(X) = \mu$ e $Var(X) = \sigma^2$. Para representar que $X$ segue uma distribuição normal, utiliza-se a notação $X \sim N(\mu, \sigma^2)$ \cite{bussab2010estatistica}.
 
 % ------------------------------------------------------------
 \subsection{Testes de Normalidade} \label{section:tests_norm} % 3.2. Testes de Normalidade
 
-A seguir serão apresentados os testes de normalidade que seram avaliados durante a simulação de Monte Carlo. Foram selecionados vários testes para este estudo. Dentre estes testes, tem-se \textit{testes clássicos}, como Shapiro-Wilk, Kolmogorov-Smirnov, etc. e \textit{testes modernos}, propostos por Zhang em 2002. Com o objetivo de encontrar o mais adequado e poderoso teste de aderência à distribuição Normal, em função de diferentes tamanhos amostrais.
+A seguir serão apresentados os testes de normalidade que serão avaliados durante a simulação de Monte Carlo. Foram selecionados vários testes para este estudo. Dentre estes testes, tem-se testes clássicos, como Shapiro-Wilk, Kolmogorov-Smirnov, etc. e testes modernos, propostos por Zhang em 2002. Com o objetivo de encontrar o mais adequado e poderoso teste de aderência à distribuição Normal, em função de diferentes tamanhos amostrais.
 
 \subsubsection{Kolmogorov-Smirnov}
 
-O teste de Kolmogorov-Smirnov é uma referência aos matemáticos russos \textbf{Andrey kolmogorov} e \textbf{Vladimir Ivanovich Smirnov}. Este é uma prova de bondade de ajuste para dados contínuos, o quanto a amostra provem de uma população com uma determinada distribuição teórica. Especificando quanto a distribuição de frequência acumulada observada se aproxima da distribuição aacumulada teórica.
+O teste de Kolmogorov-Smirnov é uma referência aos matemáticos russos \textbf{Andrey kolmogorov} e \textbf{Vladimir Ivanovich Smirnov}. Este é um teste de bondade de ajuste para dados contínuos, que avalia o quanto a amostra provém de uma população com uma determinada distribuição teórica. O teste verifica especificamente o grau de proximidade entre a distribuição de frequência acumulada observada e a distribuição acumulada teórica.  
 
 \vspace{0.5cm}
 
@@ -232,14 +238,13 @@ A estatística do teste é:
 Sendo
 
 \begin{equation}
-    D^{+} =   \underbrace{max}_{\mbox{i=1,...,n}}    {\left[\frac{i}{n} - p_{(i)}\right]} \ \ e \ \ D^{-} = \underbrace{max}_{\mbox{i=1,...,n}}  {\left[p_{(i)} - \frac{i-1}{n}\right]}
+    D^{+} =   \underbrace{max}_{\mbox{i=1,...,n}}    {\left[\frac{i}{n} - p_{(i)}\right]} \ \ e \ \ D^{-} = \underbrace{max}_{\mbox{i=1,...,n}}  {\left[p_{(i)} - \frac{i-1}{n}\right]},
 \end{equation}
-
-$ p_{(i)}= \phi( \frac{x_{(i)-\Bar{x}}}{s} )$, sendo $\phi$ a função de distribuição acumulada normal padrão, com x e s, respectivamente, a média e o desvio padrão amostral dos dados.
+, em que $ p_{(i)}= \phi( \frac{x_{(i)-\Bar{x}}}{s} )$, sendo $\phi$ a função de distribuição acumulada normal padrão, com x e s, respectivamente, a média e o desvio padrão amostral dos dados.
 
 \vspace{0.5cm}
 
-O valor p é calculado a partir da fórmula de Dallal-Wilkinson (1986), com base na estatística modificada:
+O valor-p é calculado a partir da fórmula de Dallal-Wilkinson (1986), com base na estatística modificada:
 
 \begin{equation}
     Z = D \left[(\sqrt{n} - 0.01) + \frac{0.85}{\sqrt{n}} \right]
@@ -254,14 +259,14 @@ Para o teste de Lilliefors, a função do R é a \texttt{lillie.test()} do pacot
 Anderson e Darling (1952) sugeriram um teste de normalidade baseado na função de distribuição empírica, para distribuições com parâmetros conhecidos, definido como: 
 
 \begin{equation}
-    A = -n - \frac{1}{n} \sum_{i=1}^{n} [(2i-1)[ \ln (p_{(i)}) + \ln(1- p_{(n-1+i)})]
+    A = -n - \frac{1}{n} \sum_{i=1}^{n} [(2i-1)[ \ln (p_{(i)}) + \ln(1- p_{(n-1+i)})],
 \end{equation}
 
-Em que $p_{(i)}$ são os percentis ordenados da distribuição normal padrão, $\phi$ é a função de distribuição acumulada nomal padrão, x é a média amostral e s é o desvio padrão amostral.
+\noindent , em que $p_{(i)}$ são os percentis ordenados da distribuição normal padrão, $\phi$ é a função de distribuição acumulada normal padrão.
 
 \vspace{0.5cm}
 
-O cálculo do p-valor foi proposto posteriormente, por Stephens (1986), e é encontrado através da fórmula estatística ajustada,
+O cálculo do valor-p foi proposto posteriormente, por Stephens (1986), e é encontrado através da fórmula estatística ajustada,
 
 \begin{equation}
     Z = A \left[ \left(1.0 + \frac{0.75}{n} \right)+  \left(n+\frac{2.25}{n^{2}} \right) \right]
@@ -277,7 +282,7 @@ O teste proposto por Shapiro e Wilk (1965) é considerado mais sensível para di
     SW = \frac{\sum_{i=1}^{n} (a_{i}y_{i})^{2}}{\sum_{i=1}  (y_{i} - \bar{y})^{2}}
 \end{equation}
 
-em que $y_{i}$ é o o-ésimo valor da amostra observada, $\hat{y}$ é a média amostral e $a_{i},a_{2},...,a_{n}$ são constantes calculada da seguinte forma:
+\noindent em que $y_{i}$ é o o-ésimo valor da amostra observada, $\hat{y}$ é a média amostral e $a_{i},a_{2},...,a_{n}$ são constantes calculada da seguinte forma:
 
 \begin{equation}
     (a_{1},a_{2},...,a_{n})^{T} = \frac{m^{T}V^{-1}}{(m^{T}V^{-1}V^{-1} )^{1/2}}
@@ -776,6 +781,11 @@ Os resultados também indicam claramente quais testes são mais poderosos e quai
 
 \vspace{0.5cm}
 
+A Figura (\ref{fig:erro_tipo_I_dist_cauchy}) evidencia que os testes \textit{Kolmogorov-Smirnov} e \textit{Anderson-Darling} apresentaram, mais uma vez, as maiores Taxas de Erro Tipo I para a distribuição em teste ($Cauchy(0, 1)$), seguidos pelo teste \textit{D'Agostino}. Em contraste, os demais testes exibiram taxas mais aceitáveis e com menor variação. Entre estes, o teste \textit{Jarque-Bera} destacou-se, ainda que com uma diferença sutil, como aquele com as menores Taxas de Erro Tipo I.
+
+À medida que o tamanho amostral ($n$) aumentou, as diferenças entre o teste \textit{Jarque-Bera} e os outros testes tornaram-se cada vez mínima. Com o crescimento de $n$, todas as taxas de Erro Tipo I convergiram para valores próximos de zero. No entanto, os testes \textit{D'Agostino}, e especialmente \textit{Kolmogorov-Smirnov} e \textit{Anderson-Darling}, foram os mais lentos em atingir essa convergência, evidenciando suas limitações na análise de distribuições similares a $Cauchy(0, 1)$, ou, como visto, a própria  $Cauchy(0, 1)$.
+
+\vspace{0.5cm}
 
 
 
@@ -802,6 +812,9 @@ Texto em aberto.
 \newline
     
 \noindent DUFOUR, J. - M. et al. Simulation-based finite sample normality tests in linear regressions. {\it The Econometrics Journal}, Wiley Online Library, v. 1, n. 1, p. 154–173, 1998.\newline
+
+\noindent Glasserman, P. (2004). Monte Carlo Methods in Financial Engineering. Springer.
+\newline
     
 \noindent JARQUE, C. M.; BERA, A. K. Efficient tests for normality, homoscedasticity and serial independence of regression residuals. {\it Economics Letters}, Elsevier, v. 6, n. 3, p. 255–259, 1980.\newline
 
@@ -810,8 +823,17 @@ Texto em aberto.
 \noindent LILLIEFORS, H. W. On the Kolmogorov-Smirnov test for normality with mean and variance unknown. {\it Journal of the American Statistical Association}, Taylor \& Francis, v. 62, n. 318, p. 399–402, 1967.\newline
 
 \noindent MEYER, Paul, L. – Probabilidade: Aplicação à Estatística – Ed. Livro Técnico, 1987. \newline
-    
+
+
+\noindent Metropolis, N., & Ulam, S. (1949). The Monte Carlo Method. Journal of the American Statistical Association.
+
+\newline
+
 \noindent R CORE TEAM (2024). {\it R: A language and environment for statistical computing}. R Foundation for Statistical Computing, Vienna, Austria. Disponível em: \url{http://www.R-project.org/}.\newline
+
+
+
+\noindent Rubinstein, R. Y., & Kroese, D. P. (2016). Simulation and the Monte Carlo Method. Wiley.
 
 \noindent SHAPIRO, S. S.; WILK, M. B. An analysis of variance test for normality (complete samples). {\it Biometrika}, JSTOR, v. 52, n. 3/4, p. 591–611, 1965.\newline
 
@@ -822,6 +844,8 @@ Texto em aberto.
 \noindent STEPHENS, M.A. (1986): Tests based on EDF statistics. In: D’Agostino, R.B. and Stephens, M.A., eds.: Goodness-of-Fit Techniques. Marcel Dekker, New York.\newline
 
 \noindent THODE JUNIOR, HC. Testing for Normality, New York: M Decker, 2002, 154p.
+
+
 
 
 \end{flushleft}
