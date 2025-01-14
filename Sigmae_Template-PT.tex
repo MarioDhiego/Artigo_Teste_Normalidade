@@ -15,6 +15,10 @@
 \usepackage[ocgcolorlinks]{hyperref} % Links clicáveis com cores que não afetam a impressão.
 \usepackage{comment} % Inclusão/exclusão de blocos de texto.
 \usepackage{lipsum} % Texto gerado automaticamente para preenchimento.
+\usepackage{booktabs} % Para linhas elegantes
+\usepackage{multirow} % Para centralizar verticalmente
+
+
 
 \usepackage{courier} % Fonte Courier New
 \usepackage{subcaption}
@@ -431,6 +435,54 @@ Os resultados do Teste de Kappa-Fleiss estão dispostos na Tabela (\ref{tab:resu
 Análise do Resultado do Teste de Kappan-Fleiss.
 
 \vspace{0.5cm}
+
+
+\begin{table}
+    \centering
+    \caption{Taxa de Acertos para a Sensibilidade dos Testes de Normalidade.}
+    \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
+    \hline \hline
+Distribuição              & Amostra & AD    & CVM   &  DA   & JB   &  KS   & Lilliefors  &  SW  & $Z_{A}$ & $Z_{C}$ & $Z_{K}$ \\
+    \hline
+\multirow{6}{*}{Beta}     & 30      &  1    & 0.80  & 0.79  & 0.85 &  1    &  0.85       & 0.73  &  0.72   &  0.74   &  0.81  \\
+                          &  50     & 0.99  & 0.73  & 0,73  & 0.84 &  0.99 &  0.79       &  0.64 &  0.59   &  0.66   &  0.67  \\
+                          & 100     & 0.99  & 0.49  & 0.46  & 0.69 &  0.99 &  0.61       &  0.27 &  0.19   &  0.29   &  0.33  \\
+                          & 300     &    &       &       &      &     &             &      &         &         &        \\
+                          & 500     &    &       &       &      &     &             &      &         &         &        \\
+                          & 1000    &    &       &       &      &     &             &      &         &         &        \\
+                          \hline
+\multirow{6}{*}{Normal}   & 30      &    &       &       &      &     &             &      &         &         &        \\
+                          &  50     &    &       &       &      &     &             &      &         &         &        \\
+                          & 100     &    &       &       &      &     &             &      &         &         &        \\
+                          & 300     &    &       &       &      &     &             &      &         &         &        \\
+                          & 500     &    &       &       &      &     &             &      &         &         &        \\
+                          & 1000    &    &       &       &      &     &             &      &         &         &        \\  
+                          \hline
+\multirow{6}{*}{Couchy}     & 30      &    &       &       &      &     &             &      &         &         &        \\
+                  &  50     &    &       &       &      &     &             &      &         &         &        \\
+                  & 100     &    &       &       &      &     &             &      &         &         &        \\
+                  & 300     &    &       &       &      &     &             &      &         &         &        \\
+                  & 500     &    &       &       &      &     &             &      &         &         &        \\
+                  & 1000    &    &       &       &      &     &             &      &         &         &        \\
+    \hline \hline
+    \end{tabular}
+    \label{tab:inverted}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 A seguir, teremos as Figuras que ilustram as Taxas de Erro Tipo I e Poder do Teste, ambos em função do tamanho amostral ($n$). Para as Distribuições de Probabilidade descritas acima.
 
