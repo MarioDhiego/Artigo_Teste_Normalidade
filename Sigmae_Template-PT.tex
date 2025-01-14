@@ -420,7 +420,7 @@ Os resultados do Teste de Kappa-Fleiss estão dispostos na Tabela (\ref{tab:resu
 \centering
 \caption{Teste kappa-Fleiss de Concordância para os testes de normalidade.}
     \begin{tabular}{c|c}
-    \hline
+    \hline\hline
     Distribuição de Probabilidade  &  Teste de Kappa-Fleiss\\
     \hline
           $Normal(0, 1)$           &  0,93  \\
@@ -432,41 +432,45 @@ Os resultados do Teste de Kappa-Fleiss estão dispostos na Tabela (\ref{tab:resu
     \label{tab:resultKappaFleiss}
 \end{table}
 
-Análise do Resultado do Teste de Kappan-Fleiss.
+Percebe-se que para a maioria das distribuições, os testes tiveram forte concordância entre rejeitar ou não a hipótese de normalidade. 
 
 \vspace{0.5cm}
 
+A tabela (\ref{tab:inverted2}) apresenta os resultados obtidos da sensibilidade para cada teste e tamanho amostral.
 
-\begin{table}
+\begin{table}[H]
     \centering
     \caption{Taxa de Acertos para a Sensibilidade dos Testes de Normalidade.}
     \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
     \hline \hline
-Distribuição              & Amostra & AD    & CVM   &  DA   & JB   &  KS   & Lilliefors  &  SW  & $Z_{A}$ & $Z_{C}$ & $Z_{K}$ \\
+Distribuição              & Amostra &   AD  & CVM  &  DA   & JB   &  KS   & Lilli &  SW  & $Z_{A}$ & $Z_{C}$ & $Z_{K}$ \\
     \hline
-\multirow{6}{*}{Beta}     & 30      &  1    & 0.80  & 0.79  & 0.85 &  1    &  0.85       & 0.73  &  0.72   &  0.74   &  0.81  \\
-                          &  50     & 0.99  & 0.73  & 0,73  & 0.84 &  0.99 &  0.79       &  0.64 &  0.59   &  0.66   &  0.67  \\
-                          & 100     & 0.99  & 0.49  & 0.46  & 0.69 &  0.99 &  0.61       &  0.27 &  0.19   &  0.29   &  0.33  \\
-                          & 300     &    &       &       &      &     &             &      &         &         &        \\
-                          & 500     &    &       &       &      &     &             &      &         &         &        \\
-                          & 1000    &    &       &       &      &     &             &      &         &         &        \\
-                          \hline
-\multirow{6}{*}{Normal}   & 30      &    &       &       &      &     &             &      &         &         &        \\
-                          &  50     &    &       &       &      &     &             &      &         &         &        \\
-                          & 100     &    &       &       &      &     &             &      &         &         &        \\
-                          & 300     &    &       &       &      &     &             &      &         &         &        \\
-                          & 500     &    &       &       &      &     &             &      &         &         &        \\
-                          & 1000    &    &       &       &      &     &             &      &         &         &        \\  
-                          \hline
-\multirow{6}{*}{Couchy}     & 30      &    &       &       &      &     &             &      &         &         &        \\
-                  &  50     &    &       &       &      &     &             &      &         &         &        \\
-                  & 100     &    &       &       &      &     &             &      &         &         &        \\
-                  & 300     &    &       &       &      &     &             &      &         &         &        \\
-                  & 500     &    &       &       &      &     &             &      &         &         &        \\
-                  & 1000    &    &       &       &      &     &             &      &         &         &        \\
+\multirow{6}{*}{Beta (2,5)} 
+                          & 30      & 1     & 0.82 & 0.81  & 0.87 &  1    &  0.85  &  0.75 &  0.73  & 0.76   & 0.81   \\
+                          & 50      & 1     & 0.74 & 0.73  & 0.84 &  0.99 &  0.79  &  0.62 &  0.55  & 0.63   & 0.68   \\
+                          & 100     & 0.99  & 0.51 & 0.47  & 0.70 &  0.98 &  0.62  &  0.27 &  0.17  & 0.27   & 0.28   \\
+                          & 300     &   &   &   &  &   &   &   &     &     &     \\
+                          & 500     &   &   &   &  &   &   &   &     &     &        \\
+                          & 1000    &   &   &   &  &   &   &   &     &     &        \\
+                          \hline\hline
+\multirow{6}{*}{Normal (0,1)}   
+                          & 30      &       &       &       &      &       &             &       &         &         &        \\
+                          &  50     &       &       &       &      &       &             &       &         &         &        \\
+                          & 100     &       &       &       &      &       &             &       &         &         &        \\
+                          & 300     &       &       &       &      &       &             &       &         &         &        \\
+                          & 500     &       &       &       &      &       &             &       &         &         &        \\
+                          & 1000    &       &       &       &      &       &             &       &         &         &        \\  
+                          \hline\hline
+\multirow{6}{*}{Couchy (0,1)}     
+                         & 30       &       &       &       &      &       &             &       &         &         &        \\
+                         &  50      &       &       &       &      &       &             &       &         &         &        \\
+                         & 100      &       &       &       &      &       &             &       &         &         &        \\
+                         & 300      &       &       &       &      &       &             &       &         &         &        \\
+                         & 500      &       &       &       &      &       &             &       &         &         &        \\
+                         & 1000     &       &       &       &      &       &             &       &         &         &        \\
     \hline \hline
     \end{tabular}
-    \label{tab:inverted}
+    \label{tab:inverted2}
 \end{table}
 
 
