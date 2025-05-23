@@ -48,7 +48,7 @@
 % ------------------------------------------------------------
 % Resumo em Português
 \noindent{ \bf Resumo:} { \it
-    O objetivo deste trabalho foi avaliar as taxas de Erro Tipo I e Poder dos Testes de normalidade Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Crámer-Von-Mises (CVM) e de outros testes modernos propostos por Zhang (2002). Estes teste foram implementados na linguagem de programação $R$ para decidir quais apresentaram o melhor desempenho. A metodologia utilizada foi a Simulação de Monte Carlo, que utilizou as Distribuições Normal, Beta e Cauchy. Foram simuladas seis diferentes tamanhos amostrais, a partir de cada amostra simulada foram realizados os testes. Sob normalidade, os testes foram exatos e, em relação ao poder, o desempenho foi afetado pelo tamanho da amostra e tipo de distribuição. Para amostras maiores que 500, o teste de Zhang (2002) apresentou o melhor desempenho. No caso de amostras menores, de modo geral, o teste Shapiro-Wilk obteve os melhores resultados. O teste de Kappa-Fleis foi aplicado para avaliar a concordância nas decisões. Para a maioria das distribuições, os testes tiveram forte concordância. Por outro lado, os testes de KS e AD tiveram baixa potência, mesmo em amostras grandes.
+    O objetivo deste trabalho foi avaliar as taxas de Erro Tipo I e Poder dos Testes de normalidade Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Crámer-Von-Mises (CVM) e de outros testes modernos propostos por Zhang (2002). Estes teste foram implementados na linguagem de programação R para decidir quais apresentaram o melhor desempenho. A metodologia utilizada foi a Simulação de Monte Carlo, que utilizou as Distribuições Normal, Beta e Cauchy. Foram simuladas seis diferentes tamanhos amostrais, a partir de cada amostra simulada foram realizados os testes. Sob normalidade, os testes foram exatos e, em relação ao poder, o desempenho foi afetado pelo tamanho da amostra e tipo de distribuição. Para amostras maiores que 500, o teste de Zhang (2002) apresentou o melhor desempenho. No caso de amostras menores, de modo geral, o teste Shapiro-Wilk obteve os melhores resultados. O teste de Kappa-Fleis foi aplicado para avaliar a concordância nas decisões. Para a maioria das distribuições, os testes tiveram forte concordância. Por outro lado, os testes de KS e AD tiveram baixa potência, mesmo em amostras grandes.
 }
 
 \vspace{0.5cm}
@@ -68,7 +68,7 @@
 % ------------------------------------------------------------
 % Resumo em Inglês
 \noindent{\bf Abstract:} {\it 
-    The objective of this work was to evaluate the Type I Error rates and Power of the Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Cramer-Von-Mises (CVM) normality tests, and other modern tests proposed by Zhang (2002). These tests were implemented in the $R$ programming language to decide which ones presented the best performance. The methodology used was the Monte Carlo Simulation, which used the Normal, Beta, and Cauchy distributions. Six different sample sizes were simulated, and the tests were performed for each simulated sample. Under normality, the tests were exact, and regarding power, the performance was affected by the sample size and type of distribution. For samples larger than 500, the Zhang (2002) test showed the best performance, and in the case of smaller samples, in general, the Shapiro-Wilk test obtained the best results. The Kappa-Fleis test was applied to evaluate the agreement in decision-making. For most distributions, the tests had strong agreement; the KS and AD tests proved to be very low-powered, even for large samples.
+    The objective of this work was to evaluate the Type I Error rates and Power of the Kolmogorov-Smirnov (KS), Shapiro-Wilk (SW), Anderson-Darling (AD), D’Agostinho-Pearson (DP), Lilliefors (LF), Jarque-Bera (JB), Cramer-Von-Mises (CVM) normality tests, and other modern tests proposed by Zhang (2002). These tests were implemented in the R programming language to decide which ones presented the best performance. The methodology used was the Monte Carlo Simulation, which used the Normal, Beta, and Cauchy distributions. Six different sample sizes were simulated, and the tests were performed for each simulated sample. Under normality, the tests were exact, and regarding power, the performance was affected by the sample size and type of distribution. For samples larger than 500, the Zhang (2002) test showed the best performance, and in the case of smaller samples, in general, the Shapiro-Wilk test obtained the best results. The Kappa-Fleis test was applied to evaluate the agreement in decision-making. For most distributions, the tests had strong agreement; the KS and AD tests proved to be very low-powered, even for large samples.
 }
     
 \vspace{0.5cm}
@@ -93,7 +93,7 @@
 % ------------------------------------------------------------
 \section{Introdução} % 1. Introdução
 
-Existem aproximadamente 40 testes de normalidade disponíveis para análises estatísticas \cite{dufour1998simulation}. No entanto, esses testes frequentemente produzem resultados contraditórios para o mesmo conjunto de dados, ora rejeitando, ora não rejeitando a hipótese de normalidade. Essa divergência decorre das diferentes abordagens e métodos empregados por cada teste, bem como da ampla variação nas características das amostras testadas. Como resultado, a eficácia de cada teste pode variar dependendo das particularidades da amostra analisada, o que dificulta a escolha de um teste que seja  universalmente aplicável e eficaz.
+Diversos métodos estatísticos, cerca de mais de 40 segundo \cite{dufour1998simulation}, foram desenvolvidos para verificar se uma amostra segue uma distribuição normal. No entanto, é comum que esses testes forneçam respostas inconsistentes ao serem aplicados ao mesmo conjunto de dados: alguns indicam que os dados são normais, enquanto outros apontam o contrário. Essas discrepâncias ocorrem devido às diferentes fundamentações estatísticas e critérios adotados por cada teste, além das variações nas propriedades das amostras avaliadas. Por isso, o desempenho dos testes de normalidade costuma depender fortemente das características específicas dos dados, o que dificulta a adoção de um único teste como padrão confiável em todos os contextos. 
 
 \vspace{0.5cm}
 
@@ -187,10 +187,10 @@ A Distribuição Normal é um modelo de probabilidade essencial para a estatíst
 
 \vspace{0.5cm}
 
-Considere $X$ uma variável aleatória contínua que segue uma Distribuição Normal com parâmetros $\mu$ e $\sigma^{2}$, onde $-\infty < \mu < +\infty$ e $\sigma^{2} > 0$. A função densidade de probabilidade (f.d.p.) de $X$ é dada pela Equação (\ref{equation:desityNormal}):
+Considere $X$ uma variável aleatória contínua que segue uma Distribuição Normal com parâmetros $\mu$ e $\sigma^{2}$, onde $-\infty < \mu < +\infty$ e $\sigma^{2} > 0$. A função densidade de probabilidade de $X$ é dada pela Equação (\ref{equation:desityNormal}):
 
 \begin{equation}
-    f(x) = \dfrac{1}{\sqrt{2 \pi \sigma^2}} \ e^{{- \frac{(x - \mu)^{2}}{2 \sigma^2}}} \ , \ - \infty < x < +\infty \ ,
+    f(x) = \dfrac{1}{\sqrt{2 \pi \sigma^2}} \exp\left\{ {{- \dfrac{(x - \mu)^{2}}{2 \sigma^2}}} \right\} \ , \ - \infty < x < +\infty \ ,
     \label{equation:desityNormal}
 \end{equation}
 
@@ -455,8 +455,8 @@ Distribuição              & Amostra &   AD  & CVM  &  DA   & JB   &  KS   & Li
                           \hline\hline
 \multirow{6}{*}{Normal (0,1)}   
                           & 30      & 1.0   & 0.95  & 0.94  & 0.93 &  1.0  &  0.95  & 0.94  &  0.94  &  0.94  & 0.95   \\
-                          &  50     &       &       &       &      &       &        &       &        &        &        \\
-                          & 100     &       &       &       &      &       &        &       &        &        &        \\
+                          &  50     & 1.0   & 0.94  &  0.94 & 0.93 &  1.0  &  0.94  & 0.94  &  0.94  &  0.94  & 0.94    \\
+                          & 100     & 1.0   &  0.95 &  0.95 & 0.93 &  1.0  &  0.95  & 0.95  &  0.94  &  9.94  & 0.94   \\
                           & 300     &       &       &       &      &       &        &       &        &        &        \\
                           & 500     &       &       &       &      &       &        &       &        &        &        \\
                           & 1000    &       &       &       &      &       &        &       &        &        &        \\  
