@@ -451,15 +451,15 @@ Distribuição              & Amostra &   AD  & CVM  &  DA   & JB   &  KS   & Li
                           & 100     & 0.99  & 0.51 & 0.47  & 0.70 &  0.98 &  0.62  &  0.27 &  0.17  & 0.27   & 0.28   \\
                           & 300     & 0.99  & 0.49 & 0.46  & 0.69 &  0.98 &  0.61  &  0.27 &  0.18  & 0.26   & 0.29    \\
                           & 500     & 0.28  & 0.003 & 0.001  & 0.002 & 0.49  & 0.02 & 0.01  & 0.01  & 0.01   & 0.01     \\
-                          & 1000    & 0.004  & 0.10  & 0.010  & 0.10 & 0.10  & 0.10  & 0.10  & 0.10  & 0.10  & 0.10       \\
+                          & 1000    & 0.004 & 0.10  & 0.010  & 0.10 & 0.10  & 0.10  & 0.10  & 0.10  & 0.10  & 0.10       \\
                           \hline\hline
 \multirow{6}{*}{Normal (0,1)}   
-                          & 30      & 1.0   & 0.95  & 0.94  & 0.93 &  1.0  &  0.95  & 0.94  &  0.94  &  0.94  & 0.95   \\
-                          &  50     & 1.0   & 0.94  &  0.94 & 0.93 &  1.0  &  0.94  & 0.94  &  0.94  &  0.94  & 0.94    \\
-                          & 100     & 1.0   &  0.95 &  0.95 & 0.93 &  1.0  &  0.95  & 0.95  &  0.94  &  9.94  & 0.94   \\
-                          & 300     &       &       &       &      &       &        &       &        &        &        \\
-                          & 500     &       &       &       &      &       &        &       &        &        &        \\
-                          & 1000    &       &       &       &      &       &        &       &        &        &        \\  
+                          & 30      & 1.0  & 0.95  & 0.94 & 0.93 &  1.0 & 0.95  & 0.94  &  0.94  &  0.94  & 0.95   \\
+                          &  50     & 1.0  & 0.94  & 0.94 & 0.93 &  1.0 & 0.94  & 0.94  &  0.94  &  0.94  & 0.94    \\
+                          & 100     & 1.0  & 0.95  & 0.95 & 0.93 &  1.0 & 0.95  & 0.95  &  0.94  &  0.94  & 0.94    \\
+                          & 300     & 1.0  & 0.95  & 0.95 & 0.94 &  10. & 0.94  & 0.95  &  0.95  &  0.95  & 0.95     \\
+                          & 500     &      &       &       &      &     &        &       &        &        &        \\
+                          & 1000    &      &       &       &      &       &        &       &        &        &        \\  
                           \hline\hline
 \multirow{6}{*}{Couchy (0,1)}     
                          & 30       &       &       &       &      &       &             &       &         &         &        \\
@@ -475,6 +475,41 @@ Distribuição              & Amostra &   AD  & CVM  &  DA   & JB   &  KS   & Li
 
 
 
+
+%\begin{table}[H]
+%    \centering
+%    \caption{Variância dos P-valores para os Testes de Normalidade.}
+%    \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
+%    \hline \hline
+%Distribuição              & Amostra &   AD  & CVM  &  DA   & JB   &  KS   & Lilli &  SW  & $Z_{A}$ & $Z_{C}$ & $Z_{K}$ \\
+%    \hline
+%\multirow{6}{*}{Beta (2,5)} 
+%                          & 30      &   &  &   &  &  &  &   &  &  &    \\
+%                          & 50      &   &  &   &  &  &  &   &  &  &    \\
+%                          & 100     &   &  &   &  &  &  &   &  &  &    \\
+%                          & 300     &   &  &   &  &  &  &   &  &  &     \\
+%                          & 500     &   &  &   &  &  &  &   &  &  &     \\
+%                          & 1000    &  &   &   &  &  &  &   &  &  &       \\
+%                          \hline\hline
+%\multirow{6}{*}{Normal (0,1)}   
+%                          & 30      &   &   &  &  &  &   &   &    &    &    \\
+%                         &  50     &   &   &  &  &   &   &   &    &    &     \\
+%                          & 100     &   &   &  &  &   &   &   &    &    &     \\
+%                          & 300     & 0.024 & 0.083 & 0.083 & 0.078 & 0.037 & 0.081 & 0.081  &  0.083 &  0.083  &  0.083    \\
+%                          & 500     &      &       &       &      &     &        &  %     &        &        &        \\
+%                         & 1000    &      &       &       &      &       &        & %      &        &        &        \\  
+%                          \hline\hline
+%\multirow{6}{*}{Couchy (0,1)}     
+%                         & 30       &       &       &       &      &       &        %     &       &         &         &        \\
+%                        &  50      &       &       &       &      &       &         %    &       &         &         &        \\
+%                         & 100      &       &       &       &      &       &        %     &       &         &         &        \\
+%                         & 300      &       &       &       &      &       &        %     &       &         &         &        \\
+%                         & 500      &       &       &       &      &       &        %     &       &         &         &        \\
+%                         & 1000     &       &       &       &      &       &        %     &       &         &         &        \\
+%    \hline \hline
+%    \end{tabular}
+%    \label{tab:inverted2}
+% \end{table}
 
 
 
@@ -885,7 +920,7 @@ Um ponto importante a ser destacado é que, para $n = 500$, os testes \textit{Ko
 
 \section{Considerações Finais}
 
-Texto em aberto.
+Para dados de distribuição normal, os testes avaliados foram exatos, controlando a taxa de erro tipo I. Em relação ao poder, o desempenho dos testes foi afetado pelo tamanho da amostra e pelo tipo da distribuição. Todos se tornaram mais poderosos à medida que se aumentou o tamanho amostral.
 
 
 \begin{comment}
